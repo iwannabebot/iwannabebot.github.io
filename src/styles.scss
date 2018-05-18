@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+$highlight: #f86942;
+$main: #352245;
+$bg: #fef7d6;
+$font: 'Nunito Sans', sans-serif;
+* {
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+body, html { height:100%; }
+body{
+  font-family: $font;
+  background-color: $bg;
+  color: $main;
+}
+.highlight {
+  color: $highlight;
+}
+//wiggle
+@-webkit-keyframes wiggle
+{
+    0% {-webkit-transform: rotateZ(2deg);}
+    50% {-webkit-transform: rotateZ(-2deg);}
+    100% {-webkit-transform: rotateZ(2deg);}
+}
+@-moz-keyframes wiggle
+{
+    0% {-moz-transform: rotateZ(2deg);}
+    50% {-moz-transform: rotateZ(-2deg);}
+    100% {-moz-transform: rotateZ(2deg);}
+}
+@-o-keyframes wiggle
+{
+    0% {-o-transform: rotateZ(2deg);}
+    50% {-o-transform: rotateZ(-2deg);}
+    100% {-o-transform: rotateZ(2deg);}
+}
+@keyframes wiggle
+{
+    0% {transform: rotateZ(2deg);}
+    50% {transform: rotateZ(-2deg);}
+    100% {transform: rotateZ(2deg);}
+}
+
+//blink
+@-webkit-keyframes blink
+{
+  50% {
+    opacity: 0.0;
+  }
+}
+@-moz-keyframes blink
+{
+  50% {
+    opacity: 0.0;
+  }
+}
+@-o-keyframes blink
+{
+  50% {
+    opacity: 0.0;
+  }
+}
+@keyframes blink
+{
+  50% {
+    opacity: 0.0;
+  }
+}
+
+.wobble {
+  display: inline-block;
+  -webkit-animation: wiggle 0.2s ease infinite;
+  -moz-animation: wiggle 0.2s ease infinite;
+  -o-animation: wiggle 0.2s ease infinite;
+  animation: wiggle 0.2s ease infinite;
+}
+
+.blink {
+  display: inline-block;
+  -webkit-animation: blink 1s step-start 0s infinite;
+  -moz-animation: blink 1s step-start 0s infinite;
+  -o-animation: blink 1s step-start 0s infinite;
+  animation: blink 1s step-start 0s infinite;
+}
+

@@ -1,0 +1,9 @@
+.article {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr 50px;
+  grid-template-columns: 1fr auto 1fr;
+  height: 100%;
+}
+header {
+  font-weight: 1000;
+}
