@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const dt = new Date();
     if (dt.getHours() > 18 || dt.getHours() < 4){
-      this.classmode = 'night';
+      this.classmode = 'day';
     } else {
       this.classmode = 'day';
     }
