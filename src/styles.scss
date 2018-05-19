@@ -8,12 +8,27 @@ $font: 'Nunito Sans', sans-serif;
   margin: 0px;
   padding: 0px;
 }
+::selection {
+  background-color:#f869424f;
+}
+canvas {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
 body, html { height:100%; }
 body{
   font-family: $font;
+}
+.night {
+  background-color: $main;
+  color: $bg;
+}
+.day {
   background-color: $bg;
   color: $main;
 }
+a { color: inherit; }
 .highlight {
   color: $highlight;
 }

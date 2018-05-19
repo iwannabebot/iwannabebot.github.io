@@ -1,15 +1,32 @@
 <div class="article">
-  <div></div><div></div><div></div>
+
+
+  <div class="nav"></div>
+
+
   <div></div>
-  <div>
+  <div class="banner">
     <header>
-        <div class="wobble">👋</div>Hi! I'm <span class="highlight">{{name}}</span>
+      <div class="wobble">👋</div><span>Hey I'm </span><span class="highlight">{{name}}</span>
     </header>
     <div>
-
     </div>
   </div>
   <div></div>
-  <div></div><div></div><div></div>
-  <div></div><div></div><div></div>
+
+
+  <div class="social">
+      <div></div>
+      <a target="_blank" [href]="social.medium" class="social-button"><i class="fab fa-medium"></i></a>
+      <a target="_blank" [href]="social.stackoverflow" class="social-button"><i class="fab fa-stack-overflow"></i></a>
+      <a target="_blank" [href]="social.github" class="social-button"><i class="fab fa-github"></i></a>
+      <a target="_blank" [href]="social.linkedin" class="social-button"><i class="fab fa-linkedin"></i></a>
+      <a target="_blank" [href]="social.twitter" class="social-button"><i class="fab fa-twitter"></i></a>
+      <div></div>
+  </div>
+
+
+  <div class="board">
+    <my-game-board></my-game-board>
+  </div>
 </div>

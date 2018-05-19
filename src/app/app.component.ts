@@ -7,9 +7,17 @@ import { Component, Output, ElementRef, OnInit, ViewChild } from '@angular/core'
 })
 export class AppComponent implements OnInit {
 
+  classmode = '';
+
   constructor() {
   }
 
   ngOnInit() {
+    const dt = new Date();
+    if (dt.getHours() > 18 || dt.getHours() < 4){
+      this.classmode = 'night';
+    } else {
+      this.classmode = 'day';
+    }
   }
 }

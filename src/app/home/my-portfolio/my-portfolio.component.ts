@@ -8,11 +8,18 @@ import * as Rx from 'rxjs';
 export class MyPortfolioComponent implements OnInit {
 
   public name: string;
-  public names = ['Nilay'];
+  public names = ['Nilay', 'a FullStack Developer'];
   public index = 0;
   public length = 0;
   public sub: any;
   public dir: boolean = true;
+  public social = {
+    medium : "https://medium.com/@nilayvishwakarma",
+    stackoverflow : "https://stackoverflow.com/users/3331861/nilay-vishwakarma",
+    github: "https://github.com/iwannabebot/",
+    linkedin: "https://www.linkedin.com/in/nilayvishwakarma/",
+    twitter: "https://twitter.com/iwannabebot"
+  }
   constructor() {
     this.index = 0;
     this.name = this.names[this.index];
