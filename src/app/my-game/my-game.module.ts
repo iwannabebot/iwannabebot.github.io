@@ -11,6 +11,8 @@ import { MyGameBoardComponent } from './my-game-board/my-game-board.component';
   ],
   declarations: [
     MyGameBoardComponent
+  ],
+  providers: [
   ]
 })
 export class MyGameModule { }
