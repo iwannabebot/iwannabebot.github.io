@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, OnDest
 import { MyGameEngineService } from '../services/my-game-engine/my-game-engine.service';
 import { MyGameInputService } from '../services/my-game-input/my-game-input.service';
 import { MyGameStoryService } from '../services/my-game-story/my-game-story.service';
+import { MyGameGraphicsService } from '../services/my-game-graphics/my-game-graphics.service';
 
 @Component({
   selector: 'my-game-board',
@@ -20,6 +21,7 @@ export class MyGameBoardComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("tilesSpritesheet") public tilesSpritesheet: ElementRef;
 
   constructor(
+    @Inject(MyGameGraphicsService) private graphics: MyGameGraphicsService,
     @Inject(MyGameStoryService) private story: MyGameStoryService,
     @Inject(MyGameEngineService) private engine: MyGameEngineService,
     @Inject(MyGameInputService) private input: MyGameInputService,) { }
@@ -35,16 +37,15 @@ export class MyGameBoardComponent implements OnInit, AfterViewInit, OnDestroy {
       this.tilesSpritesheet.nativeElement as HTMLImageElement
     ];
 
-    this.story.init(
-      elements[0], elements[1], elements[2], elements[3],
-      elements[4], elements[5], elements[6]);
-
     let len = 0;
     elements.forEach(img => {
       img.onload = () => {
         len++;
         if(len === elements.length) {
-          this.engine.init(this.canvas.nativeElement, this.story);
+          this.graphics.init(this.canvas.nativeElement,
+            elements[0], elements[1], elements[2], elements[3],
+            elements[4], elements[5], elements[6]);
+          this.engine.init(this.story, this.graphics);
         }
       }
     });

@@ -5,6 +5,7 @@ import { MyGameEngineService } from './services/my-game-engine/my-game-engine.se
 import { MyGameInputService } from './services/my-game-input/my-game-input.service';
 import { MyGameAudioService } from './services/my-game-audio/my-game-audio.service';
 import { MyGameStoryService } from './services/my-game-story/my-game-story.service';
+import { MyGameGraphicsService } from './services/my-game-graphics/my-game-graphics.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { MyGameStoryService } from './services/my-game-story/my-game-story.servi
     MyGameBoardComponent
   ],
   providers: [
+    MyGameGraphicsService,
     MyGameStoryService,
     MyGameEngineService,
     MyGameInputService,
