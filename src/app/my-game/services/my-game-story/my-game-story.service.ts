@@ -8,4 +8,20 @@ export class MyGameStoryService {
   init() {
 
   }
+
+  createBackground() {
+
+  }
+
+  createPlayer() {
+
+  }
+
+  createEnemy() {
+
+  }
+
+  createItems() {
+
+  }
 }

@@ -20,6 +20,21 @@ export class MyPortfolioComponent implements OnInit {
     linkedin: "https://www.linkedin.com/in/nilayvishwakarma/",
     twitter: "https://twitter.com/iwannabebot"
   }
+  public _boardWidth = 640;
+  public _boardHeight = 320;
+  set boardWidth(w: number) {
+    this._boardWidth = w;
+  }
+  get boardWidth(): number {
+    return this._boardWidth;
+  }
+
+  set boardHeight(w: number) {
+    this._boardHeight = w;
+  }
+  get boardHeight(): number {
+    return this._boardHeight;
+  }
   constructor() {
     this.index = 0;
     this.name = this.names[this.index];
@@ -50,10 +65,18 @@ export class MyPortfolioComponent implements OnInit {
 
   ngOnInit() {
     // this.sub.subscribe();
+    this.boardWidth = window.innerWidth;
+    this.boardHeight = window.innerHeight;
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  boardParentResized(event: any) {
+    // this.boardWidth = window.innerWidth;
+    // this.boardHeight = window.innerHeight;
+    // requestAnimationFrame(() => {});
   }
 
 }

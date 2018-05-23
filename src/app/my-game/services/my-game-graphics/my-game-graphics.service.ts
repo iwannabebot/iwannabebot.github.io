@@ -9,14 +9,19 @@ export class MyGameGraphicsService {
 
   public _board: Board = null;
 
-  init(canvas: HTMLCanvasElement, en: HTMLImageElement,
+  init(canvasB: HTMLCanvasElement,
+    canvasWS: HTMLCanvasElement,
+    canvasW: HTMLCanvasElement,
+    canvasIS: HTMLCanvasElement,
+    canvasI: HTMLCanvasElement, en: HTMLImageElement,
     hu: HTMLImageElement,
     it: HTMLImageElement,
     p1: HTMLImageElement,
     p2: HTMLImageElement,
     p3: HTMLImageElement,
-    ti: HTMLImageElement) {
-    this._board = new Board(canvas, 32, 70);
+    ti: HTMLImageElement,
+    images: any[]) {
+    this._board = new Board(canvasB, canvasWS, canvasW, canvasIS, canvasI, 32, 70);
     this._board.sprites[SpriteType.Enemies] = en;
     this._board.sprites[SpriteType.Hud] = hu;
     this._board.sprites[SpriteType.Items] = it;
@@ -24,10 +29,15 @@ export class MyGameGraphicsService {
     this._board.sprites[SpriteType.Player2] = p2;
     this._board.sprites[SpriteType.Player3] = p3;
     this._board.sprites[SpriteType.Tiles] = ti;
+    const _th = this;
+    images.forEach((sprt: any) => {
+      _th._board.sprites[sprt.id] = sprt.image
+    });
     this.createSprite();
   }
 
   createSprite() {
+    this._board.spriteSheet['sun'] = { x: 0, y: 0, w: 200, h: 200, type: 'sun' };
     this._board.spriteSheet['p1duck'] = { x: 365, y: 98, w: 69, h: 71, type: SpriteType.Player1 };
     this._board.spriteSheet['p1front'] = { x: 0, y: 196, w: 66, h: 92, type: SpriteType.Player1 };
     this._board.spriteSheet['p1hurt'] = { x: 438, y: 0, w: 69, h: 92, type: SpriteType.Player1 };

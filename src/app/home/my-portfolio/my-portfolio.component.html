@@ -1,12 +1,12 @@
 <div class="main-page">
   <div class="header"></div>
-  <div style="display: none" class="banner">
+  <div class="banner">
     <header>
-      <div class="wobble">👋</div><span>Hey I'm </span><span class="highlight">{{name}}</span>
+      <div class="wobble">👋</div><span> I'm </span><span class="highlight">{{name}}</span>
     </header>
-    <span class="sub-banner">Full Stack Developer | Fontend Samurai | Blogger</span>
+    <span class="sub-banner">Full Stack Developer | Frontend Samurai | Lazy Blogger</span>
   </div>
-  <div style="display: none" class="social">
+  <div class="social">
       <div></div>
       <a target="_blank" [href]="social.medium" class="social-button"><i class="fab fa-medium"></i></a>
       <a target="_blank" [href]="social.stackoverflow" class="social-button"><i class="fab fa-stack-overflow"></i></a>
@@ -15,9 +15,10 @@
       <a target="_blank" [href]="social.twitter" class="social-button"><i class="fab fa-twitter"></i></a>
       <div></div>
   </div>
-  <div class="board">
-    <div></div>
-    <my-game-board></my-game-board>
-    <div></div>
-  </div>
+</div>
+<div (window:resize)="boardParentResized($event)" class="board">
+  <my-game-board
+  id="my-board"
+  height="{{boardHeight}}"
+  width="{{boardWidth}}"></my-game-board>
 </div>

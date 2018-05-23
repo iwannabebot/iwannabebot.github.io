@@ -1,5 +1,10 @@
-<div>
-  <canvas id="canvas" width="640" height="320" #canvas></canvas>
+<div class="canvas-board" #host>
+  <canvas id="canvas-bg" width="{{width}}" height="{{height}}" #canvasB></canvas>
+  <canvas id="canvas-world-shadow" width="{{width}}" height="{{height}}" #canvasWS></canvas>
+  <canvas id="canvas-world" width="{{width}}" height="{{height}}" #canvasW></canvas>
+  <canvas id="canvas-items-shadow" width="{{width}}" height="{{height}}" #canvasIS></canvas>
+  <canvas id="canvas-items" width="{{width}}" height="{{height}}" #canvasI></canvas>
+  <img #sunShiny [style.display]="'none'" src="../../../game-sprites/sun_shiny.png" />
   <img #enemiesSpritesheet [style.display]="'none'" src="../../../game-sprites/enemies_spritesheet.png" />
   <img #hudSpritesheet [style.display]="'none'" src="../../../game-sprites/hud_spritesheet.png" />
   <img #itemsSpritesheet [style.display]="'none'" src="../../../game-sprites/items_spritesheet.png" />

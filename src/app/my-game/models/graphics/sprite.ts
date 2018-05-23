@@ -25,6 +25,7 @@ export interface SpriteItem {
 }
 
 export enum SpriteSheetType {
+  sun = 'sun',
   p1duck = 'p1duck',
   p1front = 'p1front',
   p1hurt = 'p1hurt',
