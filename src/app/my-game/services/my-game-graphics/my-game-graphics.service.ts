@@ -176,8 +176,8 @@ export class MyGameGraphicsService {
     this._board.spriteSheet['lockgreen'] = { x: 72, y: 576, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['lockred'] = { x: 432, y: 360, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['lockyellow'] = { x: 432, y: 288, w: 70, h: 70, type: SpriteType.Tiles };
-    this._board.spriteSheet['rockHillLeft'] = { x: 432, y: 216, w: 70, h: 70, type: SpriteType.Tiles };
-    this._board.spriteSheet['rockHillRight'] = { x: 432, y: 144, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['stoneHillLeft'] = { x: 432, y: 216, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['stoneHillRight'] = { x: 432, y: 144, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['ropeAttached'] = { x: 432, y: 72, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['ropeHorizontal'] = { x: 432, y: 0, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['ropeVertical'] = { x: 360, y: 864, w: 70, h: 70, type: SpriteType.Tiles };
@@ -248,6 +248,31 @@ export class MyGameGraphicsService {
     this._board.spriteSheet['tochLit2'] = { x: 72, y: 144, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['torch'] = { x: 72, y: 72, w: 70, h: 70, type: SpriteType.Tiles };
     this._board.spriteSheet['window'] = { x: 72, y: 0, w: 70, h: 70, type: SpriteType.Tiles };
+
+    this._board.spriteSheet['grassMidCorner'] = { x: 914, y: 0, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['grassRightCorner'] = { x: 986, y: 0, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['grassLeftCorner'] = { x: 1058, y: 0, w: 70, h: 70, type: SpriteType.Tiles };
+
+    this._board.spriteSheet['stoneMidCorner'] = { x: 914, y: 72, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['stoneRightCorner'] = { x: 986, y: 72, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['stoneLeftCorner'] = { x: 1058, y: 72, w: 70, h: 70, type: SpriteType.Tiles };
+
+    this._board.spriteSheet['snowMidCorner'] = { x: 914, y: 144, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['snowRightCorner'] = { x: 986, y: 144, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['snowLeftCorner'] = { x: 1058, y: 144, w: 70, h: 70, type: SpriteType.Tiles };
+
+    this._board.spriteSheet['sandMidCorner'] = { x: 914, y: 216, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['sandRightCorner'] = { x: 986, y: 216, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['sandLeftCorner'] = { x: 1058, y: 216, w: 70, h: 70, type: SpriteType.Tiles };
+
+    this._board.spriteSheet['dirtMidCorner'] = { x: 914, y: 288, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['dirtRightCorner'] = { x: 986, y: 288, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['dirtLeftCorner'] = { x: 1058, y: 288, w: 70, h: 70, type: SpriteType.Tiles };
+
+    this._board.spriteSheet['castleMidCorner'] = { x: 914, y: 360, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['castleRightCorner'] = { x: 986, y: 360, w: 70, h: 70, type: SpriteType.Tiles };
+    this._board.spriteSheet['castleLeftCorner'] = { x: 1058, y: 360, w: 70, h: 70, type: SpriteType.Tiles };
+
     this._board.spriteSheet['bomb'] = { x: 432, y: 432, w: 70, h: 70, type: SpriteType.Items };
     this._board.spriteSheet['bombFlash'] = { x: 432, y: 360, w: 70, h: 70, type: SpriteType.Items };
     this._board.spriteSheet['bush'] = { x: 346, y: 144, w: 70, h: 70, type: SpriteType.Items };

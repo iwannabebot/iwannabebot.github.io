@@ -7,7 +7,7 @@ export class Sprite {
   public y: number;
   public w: number;
   public h: number;
-  public type: SpriteType
+  public type: SpriteType;
 }
 
 export enum SpriteType {
@@ -111,6 +111,9 @@ export enum SpriteSheetType {
   castleLeft = 'castleLeft',
   castleMid = 'castleMid',
   castleRight = 'castleRight',
+  castleLeftCorner = 'castleLeftCorner',
+  castleRightCorner = 'castleRightCorner',
+  castleMidCorner = 'castleMidCorner',
   dirt = 'dirt',
   dirtCenter = 'dirtCenter',
   dirtCenterrounded = 'dirtCenterrounded',
@@ -131,6 +134,9 @@ export enum SpriteSheetType {
   dirtLeft = 'dirtLeft',
   dirtMid = 'dirtMid',
   dirtRight = 'dirtRight',
+  dirtLeftCorner = 'dirtLeftCorner',
+  dirtRightCorner = 'dirtRightCorner',
+  dirtMidCorner = 'dirtMidCorner',
   doorclosedMid = 'doorclosedMid',
   doorclosedTop = 'doorclosedTop',
   dooropenMid = 'dooropenMid',
@@ -157,6 +163,9 @@ export enum SpriteSheetType {
   grassLeft = 'grassLeft',
   grassMid = 'grassMid',
   grassRight = 'grassRight',
+  grassLeftCorner = 'grassLeftCorner',
+  grassRightCorner = 'grassRightCorner',
+  grassMidCorner = 'grassMidCorner',
   hilllarge = 'hilllarge',
   hilllargeAlt = 'hilllargeAlt',
   hillsmall = 'hillsmall',
@@ -173,8 +182,6 @@ export enum SpriteSheetType {
   lockgreen = 'lockgreen',
   lockred = 'lockred',
   lockyellow = 'lockyellow',
-  rockHillLeft = 'rockHillLeft',
-  rockHillRight = 'rockHillRight',
   ropeAttached = 'ropeAttached',
   ropeHorizontal = 'ropeHorizontal',
   ropeVertical = 'ropeVertical',
@@ -198,6 +205,9 @@ export enum SpriteSheetType {
   sandLeft = 'sandLeft',
   sandMid = 'sandMid',
   sandRight = 'sandRight',
+  sandLeftCorner = 'sandLeftCorner',
+  sandRightCorner = 'sandRightCorner',
+  sandMidCorner = 'sandMidCorner',
   sign = 'sign',
   signExit = 'signExit',
   signLeft = 'signLeft',
@@ -222,6 +232,9 @@ export enum SpriteSheetType {
   snowLeft = 'snowLeft',
   snowMid = 'snowMid',
   snowRight = 'snowRight',
+  snowLeftCorner = 'snowLeftCorner',
+  snowRightCorner = 'snowRightCorner',
+  snowMidCorner = 'snowMidCorner',
   stone = 'stone',
   stoneCenter = 'stoneCenter',
   stoneCenterrounded = 'stoneCenterrounded',
@@ -229,6 +242,8 @@ export enum SpriteSheetType {
   stoneCliffLeftAlt = 'stoneCliffLeftAlt',
   stoneCliffRight = 'stoneCliffRight',
   stoneCliffRightAlt = 'stoneCliffRightAlt',
+  stoneHillLeft = 'stoneHillLeft',
+  stoneHillRight = 'stoneHillRight',
   stoneHalf = 'stoneHalf',
   stoneHalfLeft = 'stoneHalfLeft',
   stoneHalfMid = 'stoneHalfMid',
@@ -240,6 +255,9 @@ export enum SpriteSheetType {
   stoneLeft = 'stoneLeft',
   stoneMid = 'stoneMid',
   stoneRight = 'stoneRight',
+  stoneLeftCorner = 'stoneLeftCorner',
+  stoneRightCorner = 'stoneRightCorner',
+  stoneMidCorner = 'stoneMidCorner',
   stoneWall = 'stoneWall',
   tochLit = 'tochLit',
   tochLit2 = 'tochLit2',
