@@ -1,16 +1,22 @@
-import { SpriteItem, SpriteSheet, Sprite, SpriteSheetType } from "./sprite";
+import { Sprite } from "./sprite";
+import { Canvas } from "./canvas";
+import { CanvasType } from "./canvas-type";
+import { CanvasCollection } from "./canvas-collection";
+import { SpriteCollection } from "./sprite-collection";
+import { SpriteType } from "./sprite-type";
+import { SpriteSheetColection } from "./sprite-sheet-collection";
 
 export class Board {
 
-  sprites: SpriteItem[] = [];
+  _spriteSheets: SpriteSheetColection[] = [];
 
-  spriteSheet: SpriteSheet[] = [];
+  _sprites: SpriteCollection[] = [];
 
-  canvases: CanvasCollection[] = [];
+  _canvases: CanvasCollection[] = [];
 
   public get isReady(): boolean {
     let f = true;
-    this.canvases.forEach((c: any) => {
+    this._canvases.forEach((c: any) => {
       if (!c.isReady) {
         f = false;
       }
@@ -42,11 +48,11 @@ export class Board {
     canvas3: HTMLCanvasElement,
     canvas4: HTMLCanvasElement,
     canvas5: HTMLCanvasElement, canvasFactor: number, imageFactor: number) {
-    this.canvases[CanvasType.Background] = new MyCanvas(canvas1);
-    this.canvases[CanvasType.WorldShadow] = new MyCanvas(canvas2);
-    this.canvases[CanvasType.World] = new MyCanvas(canvas3);
-    this.canvases[CanvasType.ItemShadow] = new MyCanvas(canvas4);
-    this.canvases[CanvasType.Item] = new MyCanvas(canvas5);
+    this._canvases[CanvasType.Background] = new Canvas(canvas1);
+    this._canvases[CanvasType.WorldShadow] = new Canvas(canvas2);
+    this._canvases[CanvasType.World] = new Canvas(canvas3);
+    this._canvases[CanvasType.ItemShadow] = new Canvas(canvas4);
+    this._canvases[CanvasType.Item] = new Canvas(canvas5);
     this.CanvasFactor = canvasFactor;
     this.ImageFactor = imageFactor;
   }
@@ -54,18 +60,25 @@ export class Board {
   drawImage(
     on: CanvasType,
     sprite:
-      SpriteSheetType,
-    bx: number, by: number
+      SpriteType,
+    bx: number, by: number,
+    scaleX?: number, scaleY?: number
   ) {
-    if (this.canvases[on].Context != null) {
-      const s = this.spriteSheet[sprite] as Sprite;
-      const img = this.sprites[s.type] as HTMLImageElement;
+    var cvs = this._canvases[on] as Canvas;
+    if (cvs.Context != null) {
+      const s = this._sprites[sprite] as Sprite;
+      const img = this._spriteSheets[s.type] as HTMLImageElement;
+
+      // Scale down
       const cx = this.CanvasFactor * (bx);
-      const cy = this.canvases[on]._h - this.CanvasFactor * (by);
+      let cy = this.CanvasFactor * (by);
       const cw = s.w / this.ImageFactor * this.CanvasFactor;
       const ch = s.h / this.ImageFactor * this.CanvasFactor;
 
-      this.canvases[on].Context.drawImage(
+      // Invert axis from topleft to bottomleft;
+      cy = cvs._h - cy;
+
+      this._canvases[on].Context.drawImage(
         img,
         s.x, s.y, s.w, s.h,
         cx, cy, cw, ch,
@@ -73,65 +86,39 @@ export class Board {
     }
   }
 
-  fillRect(on: CanvasType, bx: number, by: number, bw: number, bh: number, fillStyle: string) {
-    const canvas = this.forCanvas(on);
-    if (this.canvases[on].Context != null) {
-
+  coverRectangle(
+    on: CanvasType,
+    sprite: SpriteType,
+    bx: number, by: number,
+    scaleX?: number, scaleY?: number
+  ) {
+    var cvs = this._canvases[on] as Canvas;
+    if (cvs.Context != null) {
+      const s = this._sprites[sprite] as Sprite;
+      // Scale down to canvas
       const cx = this.CanvasFactor * (bx);
-      const cy = canvas._h - this.CanvasFactor * (by);
-      const cw = bw * this.CanvasFactor;
-      const ch = bw * this.CanvasFactor;
-      canvas.Context.fillStyle = fillStyle;
-      canvas.Context.fillRect(cx, cy, cw, ch);
+      let cy = this.CanvasFactor * (by);
+      const cw = s.w / this.ImageFactor * this.CanvasFactor;
+      const ch = s.h / this.ImageFactor * this.CanvasFactor;
+
+      // Invert axis from topleft to bottomleft;
+      cy = cvs._h - cy;
+
+      // Apply style
+      var grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
+      grd.addColorStop(0, "#d0f4f7");
+      grd.addColorStop(1, "white");
+      cvs.Context.fillStyle = grd;
+
+      // Paint
+      cvs.Context.fillRect(cx, cy, cw, ch);
+
+      // Apply Scaling
+      cvs.Context.fillRect(0, 0, cvs._w, cvs._h);
     }
   }
 
-  forCanvas(on: CanvasType): MyCanvas {
-    return (this.canvases[on] as MyCanvas);
+  forCanvas(on: CanvasType): Canvas {
+    return (this._canvases[on] as Canvas);
   }
-}
-
-export interface CanvasCollection {
-  [type: string]: MyCanvas;
-}
-
-export class MyCanvas {
-  public isReady = false;
-  public _w: number = -1;
-  public _h: number = -1;
-  _context: CanvasRenderingContext2D;
-  public get Context(): CanvasRenderingContext2D {
-    return this._context;
-  }
-  public set Context(c: CanvasRenderingContext2D) {
-    this._context = c;
-    this.isReady = true;
-  }
-  _canvas: HTMLCanvasElement;
-  public get Canvas(): HTMLCanvasElement {
-    return this._canvas;
-  }
-  public set Canvas(c: HTMLCanvasElement) {
-    this.isReady = false;
-    this._canvas = c;
-    if (c.height !== c.width / 2) {
-      // throw new Error("canvas width:height::2:1 failed")
-    }
-    this._w = c.width;
-    this._h = c.height;
-    this.Context = c.getContext("2d");
-  }
-
-  constructor(
-    canvas1: HTMLCanvasElement) {
-    this.Canvas = canvas1;
-  }
-}
-
-export enum CanvasType {
-  Background = 'b',
-  World = 'ws',
-  Item = 'i',
-  ItemShadow = 'is',
-  WorldShadow = 'ws'
 }
