@@ -64,6 +64,8 @@ export class Board {
     bx: number, by: number,
     scaleX?: number, scaleY?: number
   ) {
+    scaleX = (scaleX == undefined) ? 1 : scaleX;
+    scaleY = (scaleY == undefined) ? 1 : scaleY;
     var cvs = this._canvases[on] as Canvas;
     if (cvs.Context != null) {
       const s = this._sprites[sprite] as Sprite;
@@ -72,8 +74,8 @@ export class Board {
       // Scale down
       const cx = this.CanvasFactor * (bx);
       let cy = this.CanvasFactor * (by);
-      const cw = s.w / this.ImageFactor * this.CanvasFactor;
-      const ch = s.h / this.ImageFactor * this.CanvasFactor;
+      const cw = s.w / this.ImageFactor * this.CanvasFactor * scaleX;
+      const ch = s.h / this.ImageFactor * this.CanvasFactor * scaleY;
 
       // Invert axis from topleft to bottomleft;
       cy = cvs._h - cy;
@@ -87,31 +89,21 @@ export class Board {
   }
 
   coverRectangle(
-    on: CanvasType,
-    sprite: SpriteType,
-    bx: number, by: number,
-    scaleX?: number, scaleY?: number
+    isDay: boolean
   ) {
-    var cvs = this._canvases[on] as Canvas;
+    var cvs = this._canvases[CanvasType.World] as Canvas;
     if (cvs.Context != null) {
-      const s = this._sprites[sprite] as Sprite;
-      // Scale down to canvas
-      const cx = this.CanvasFactor * (bx);
-      let cy = this.CanvasFactor * (by);
-      const cw = s.w / this.ImageFactor * this.CanvasFactor;
-      const ch = s.h / this.ImageFactor * this.CanvasFactor;
-
-      // Invert axis from topleft to bottomleft;
-      cy = cvs._h - cy;
-
       // Apply style
       var grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
-      grd.addColorStop(0, "#d0f4f7");
-      grd.addColorStop(1, "white");
-      cvs.Context.fillStyle = grd;
+      if (isDay) {
+        grd.addColorStop(0, "#d0f4f7");
+        grd.addColorStop(1, "white");
+      } else {
+        grd.addColorStop(0, "#000000");
+        grd.addColorStop(1, "#000000");
+      }
 
-      // Paint
-      cvs.Context.fillRect(cx, cy, cw, ch);
+      cvs.Context.fillStyle = grd;
 
       // Apply Scaling
       cvs.Context.fillRect(0, 0, cvs._w, cvs._h);

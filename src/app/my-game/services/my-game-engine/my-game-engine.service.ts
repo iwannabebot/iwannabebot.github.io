@@ -12,19 +12,19 @@ export class MyGameEngineService {
   public step(): number {
 
     let cTime = (window.performance &&
-    window.performance.now &&
-    window.performance.timing &&
-    window.performance.timing.navigationStart ?
-    window.performance.now() + window.performance.timing.navigationStart :
-    Date.now()) - this._baseTime;
-
-    if(Number.MAX_VALUE - cTime < 1000) {
-      this._baseTime = window.performance &&
       window.performance.now &&
       window.performance.timing &&
       window.performance.timing.navigationStart ?
       window.performance.now() + window.performance.timing.navigationStart :
-      Date.now();
+      Date.now()) - this._baseTime;
+
+    if (Number.MAX_VALUE - cTime < 1000) {
+      this._baseTime = window.performance &&
+        window.performance.now &&
+        window.performance.timing &&
+        window.performance.timing.navigationStart ?
+        window.performance.now() + window.performance.timing.navigationStart :
+        Date.now();
       return this.step();
     } else {
       return cTime;
@@ -56,19 +56,65 @@ export class MyGameEngineService {
       this._graphics._board.isReady;
   }
 
-  drawBrackground(): any {
-    const s = this.step();
-    this._graphics.drawBackground(SpriteType.sun, 4, 7);
-    this._graphics.drawBackground(SpriteType.cloud1, 3, 10, 2, 2);
+  hoveri = -1;
+  hoverdx = 0.05;
+  hoverx = 0;
+
+  hoverInc() {
+    if (this.hoverx > 2) {
+      this.hoveri = -1;
+    } else if (this.hoverx < -2) {
+      this.hoveri = +1;
+    }
   }
 
+  drawBrackground(): any {
+    this.hoverInc()
+    this._graphics.drawCover(true);
+    this._graphics.drawWorld(SpriteType.sun, 4, 9);
+    this.hoverx = this.hoverx + (this.hoveri * this.hoverdx) / 10;
+    this._graphics.drawWorld(SpriteType.cloud1, 3 + this.hoverx, 10);
+    this._graphics.drawWorld(SpriteType.cloud1, 7 + this.hoverx, 7);
+    this._graphics.drawWorld(SpriteType.cloud1, 4 + this.hoverx, 9);
+
+    this._graphics.drawWorld(SpriteType.cloud1, 11 + this.hoverx, 12);
+    this._graphics.drawWorld(SpriteType.cloud1, 9 + this.hoverx, 12);
+    this._graphics.drawWorld(SpriteType.cloud1, 5 + this.hoverx, 12);
+  }
+
+  snailWalk = 0;
+
   drawObjects(): any {
-    this._graphics.drawWorld(SpriteType.cactus, 3, 4)
-    this._graphics.drawWorld(SpriteType.p2jump, 2, 2.5)
-    this._graphics.drawWorld(SpriteType.snailWalk1, 3.8, 2.4);
+    this.snailWalk = this.snailWalk + 1;
+
+    if (this.snailWalk === 20) {
+      this.snailWalk = 0;
+    }
+    if (this.hoveri == -1) {
+      if (this.snailWalk < 10) {
+        this._graphics.drawWorld(SpriteType.snailWalk1, 4 + this.hoverx, 2.4);
+        this._graphics.drawWorld(SpriteType.snailWalk1, 11 + this.hoverx/2, 4.4);
+      } else {
+        this._graphics.drawWorld(SpriteType.snailWalk2, 4 + this.hoverx, 2.4);
+        this._graphics.drawWorld(SpriteType.snailWalk2, 11 + this.hoverx/2, 4.4);
+      }
+    } else {
+      if (this.snailWalk < 10) {
+        this._graphics.drawWorld(SpriteType.snailWalk1i, 4 + this.hoverx, 2.4);
+        this._graphics.drawWorld(SpriteType.snailWalk1i, 11 + this.hoverx/2, 4.4)
+      } else {
+        this._graphics.drawWorld(SpriteType.snailWalk2i, 4 + this.hoverx, 2.4);
+        this._graphics.drawWorld(SpriteType.snailWalk2i, 11 + this.hoverx/2, 4.4);
+      }
+    }
+
+
+    this._graphics.drawWorld(SpriteType.coinGold, 7, 4.6)
+    this._graphics.drawWorld(SpriteType.coinGold, 8, 5.25)
+    this._graphics.drawWorld(SpriteType.coinGold, 9.2, 5.2)
   }
   drawWorld(): any {
-    this._graphics.drawWorld(SpriteType.cactus, 5, 4);
+    this._graphics.drawWorld(SpriteType.cactus, 5, 3);
     this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 0, 1)
     this._graphics.drawWorld(SpriteType.grassLeftCorner, 1, 1)
     this._graphics.drawWorld(SpriteType.grassMid, 2, 1)

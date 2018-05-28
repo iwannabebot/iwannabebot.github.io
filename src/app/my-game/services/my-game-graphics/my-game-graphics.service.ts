@@ -15,31 +15,65 @@ export class MyGameGraphicsService {
     canvasWS: HTMLCanvasElement,
     canvasW: HTMLCanvasElement,
     canvasIS: HTMLCanvasElement,
-    canvasI: HTMLCanvasElement, en: HTMLImageElement,
+    canvasI: HTMLCanvasElement,
+    en: HTMLImageElement,
+    eni: HTMLImageElement,
     hu: HTMLImageElement,
     it: HTMLImageElement,
     p1: HTMLImageElement,
+    p1i: HTMLImageElement,
     p2: HTMLImageElement,
+    p2i: HTMLImageElement,
     p3: HTMLImageElement,
+    p3i: HTMLImageElement,
     ti: HTMLImageElement,
     images: any[]) {
-    this._board = new Board(canvasB, canvasWS, canvasW, canvasIS, canvasI, 32, 70);
-    this._board._spriteSheets[SpriteSheetType.Enemies] = en;
-    this._board._spriteSheets[SpriteSheetType.Hud] = hu;
-    this._board._spriteSheets[SpriteSheetType.Items] = it;
-    this._board._spriteSheets[SpriteSheetType.Player1] = p1;
-    this._board._spriteSheets[SpriteSheetType.Player2] = p2;
-    this._board._spriteSheets[SpriteSheetType.Player3] = p3;
-    this._board._spriteSheets[SpriteSheetType.Tiles] = ti;
-    const _th = this;
-    images.forEach((sprt: any) => {
-      _th._board._spriteSheets[sprt.id] = sprt.image
-    });
-    this.createSprite();
+
+      this.createBoard(canvasB, canvasWS, canvasW, canvasIS, canvasI);
+      this.createSpriteSheets(en,eni,hu,it,p1,p1i,p2,p2i,p3,p3i,ti,images);
+      this.createSprite();
+  }
+
+  createSpriteSheets(en: HTMLImageElement,
+    eni: HTMLImageElement,
+    hu: HTMLImageElement,
+    it: HTMLImageElement,
+    p1: HTMLImageElement,
+    p1i: HTMLImageElement,
+    p2: HTMLImageElement,
+    p2i: HTMLImageElement,
+    p3: HTMLImageElement,
+    p3i: HTMLImageElement,
+    ti: HTMLImageElement,
+    images: any[]) {
+      this._board._spriteSheets[SpriteSheetType.Enemies] = en;
+      this._board._spriteSheets[SpriteSheetType.Enemiesi] = eni;
+      this._board._spriteSheets[SpriteSheetType.Hud] = hu;
+      this._board._spriteSheets[SpriteSheetType.Items] = it;
+      this._board._spriteSheets[SpriteSheetType.Player1] = p1;
+      this._board._spriteSheets[SpriteSheetType.Player2] = p2;
+      this._board._spriteSheets[SpriteSheetType.Player3] = p3;
+      this._board._spriteSheets[SpriteSheetType.Player1i] = p1i;
+      this._board._spriteSheets[SpriteSheetType.Player2i] = p2i;
+      this._board._spriteSheets[SpriteSheetType.Player3i] = p3i;
+      this._board._spriteSheets[SpriteSheetType.Tiles] = ti;
+      const _th = this;
+      images.forEach((sprt: any) => {
+        _th._board._spriteSheets[sprt.id] = sprt.image
+      });
+  }
+
+  createBoard(canvasB: HTMLCanvasElement,
+    canvasWS: HTMLCanvasElement,
+    canvasW: HTMLCanvasElement,
+    canvasIS: HTMLCanvasElement,
+    canvasI: HTMLCanvasElement) {
+    this._board = new Board(canvasB, canvasWS, canvasW, canvasIS, canvasI, 64, 70);
   }
 
   createSprite() {
     this._board._sprites['sun'] = { x: 0, y: 0, w: 200, h: 200, type: 'sun' };
+    this._board._sprites['moon'] = { x: 0, y: 0, w: 620, h: 622, type: 'moon' };
     this._board._sprites['p1duck'] = { x: 365, y: 98, w: 69, h: 71, type: SpriteSheetType.Player1 };
     this._board._sprites['p1front'] = { x: 0, y: 196, w: 66, h: 92, type: SpriteSheetType.Player1 };
     this._board._sprites['p1hurt'] = { x: 438, y: 0, w: 69, h: 92, type: SpriteSheetType.Player1 };
@@ -56,6 +90,22 @@ export class MyGameGraphicsService {
     this._board._sprites['p1walk09'] = { x: 219, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1 };
     this._board._sprites['p1walk10'] = { x: 365, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1 };
     this._board._sprites['p1walk11'] = { x: 292, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1 };
+    this._board._sprites['p1ducki'] = { x: 365, y: 98, w: 69, h: 71, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1fronti'] = { x: 0, y: 196, w: 66, h: 92, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1hurti'] = { x: 438, y: 0, w: 69, h: 92, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1jumpi'] = { x: 438, y: 93, w: 67, h: 94, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1standi'] = { x: 67, y: 196, w: 66, h: 92, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk01i'] = { x: 0, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk02i'] = { x: 73, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk03i'] = { x: 146, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk04i'] = { x: 0, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk05i'] = { x: 73, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk06i'] = { x: 146, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk07i'] = { x: 219, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1 };
+    this._board._sprites['p1walk08i'] = { x: 292, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk09i'] = { x: 219, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk10i'] = { x: 365, y: 0, w: 72, h: 97, type: SpriteSheetType.Player1i };
+    this._board._sprites['p1walk11i'] = { x: 292, y: 98, w: 72, h: 97, type: SpriteSheetType.Player1i };
     this._board._sprites['p2duck'] = { x: 355, y: 95, w: 67, h: 72, type: SpriteSheetType.Player2 };
     this._board._sprites['p2front'] = { x: 0, y: 190, w: 66, h: 92, type: SpriteSheetType.Player2 };
     this._board._sprites['p2hurt'] = { x: 426, y: 0, w: 67, h: 92, type: SpriteSheetType.Player2 };
@@ -395,19 +445,25 @@ export class MyGameGraphicsService {
     this._board._sprites['snailShellupsidedown'] = { x: 148, y: 118, w: 44, h: 30, type: SpriteSheetType.Enemies };
     this._board._sprites['snailWalk1'] = { x: 143, y: 34, w: 54, h: 31, type: SpriteSheetType.Enemies };
     this._board._sprites['snailWalk2'] = { x: 67, y: 87, w: 57, h: 31, type: SpriteSheetType.Enemies };
+    this._board._sprites['snailWalk1i'] = { x: 157, y: 34, w: 54, h: 31, type: SpriteSheetType.Enemiesi };
+    this._board._sprites['snailWalk2i'] = { x: 229, y: 87, w: 57, h: 31, type: SpriteSheetType.Enemiesi };
 
+  }
+
+  drawCover(isDay: boolean) {
+    this._board.coverRectangle(isDay);
   }
 
   drawBackground(spriteSheetType: SpriteType, bx: number, by: number, scaleX?: number, scaleY?: number, rotateInDegree?: number ) {
-    this._board.coverRectangle(CanvasType.Background, spriteSheetType, bx, by, scaleX, scaleY);
+    this._board.drawImage(CanvasType.Background, spriteSheetType, bx, by, scaleX, scaleY);
   }
 
-  drawWorld(spriteSheetType: SpriteType, bx: number, by: number): any {
-    this._board.drawImage(CanvasType.World, spriteSheetType, bx, by);
+  drawWorld(spriteSheetType: SpriteType, bx: number, by: number, scaleX?: number, scaleY?: number): any {
+    this._board.drawImage(CanvasType.World, spriteSheetType, bx, by, scaleX, scaleY);
   }
 
-  drawObject(spriteSheetType: SpriteType, bx: number, by: number): any {
-    this._board.drawImage(CanvasType.Item, spriteSheetType, bx, by);
+  drawObject(spriteSheetType: SpriteType, bx: number, by: number, scaleX?: number, scaleY?: number): any {
+    this._board.drawImage(CanvasType.Item, spriteSheetType, bx, by, scaleX, scaleY);
   }
 
 }

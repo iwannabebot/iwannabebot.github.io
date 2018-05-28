@@ -22,13 +22,18 @@ export class MyGameBoardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild("host") public host: ElementRef;
   @ViewChild("sunShiny") public sunShiny: ElementRef;
-  @ViewChild("enemiesSpritesheet") public enemiesSpritesheet: ElementRef;
+  @ViewChild("moonShiny") public moonShiny: ElementRef;
   @ViewChild("hudSpritesheet") public hudSpritesheet: ElementRef;
   @ViewChild("itemsSpritesheet") public itemsSpritesheet: ElementRef;
+  @ViewChild("tilesSpritesheet") public tilesSpritesheet: ElementRef;
+  @ViewChild("enemiesSpritesheet") public enemiesSpritesheet: ElementRef;
   @ViewChild("p1Spritesheet") public p1Spritesheet: ElementRef;
   @ViewChild("p2Spritesheet") public p2Spritesheet: ElementRef;
   @ViewChild("p3Spritesheet") public p3Spritesheet: ElementRef;
-  @ViewChild("tilesSpritesheet") public tilesSpritesheet: ElementRef;
+  @ViewChild("enemiesSpritesheeti") public enemiesSpritesheeti: ElementRef;
+  @ViewChild("p1Spritesheeti") public p1Spritesheeti: ElementRef;
+  @ViewChild("p2Spritesheeti") public p2Spritesheeti: ElementRef;
+  @ViewChild("p3Spritesheeti") public p3Spritesheeti: ElementRef;
 
   constructor(
     @Inject(MyGameGraphicsService) private graphics: MyGameGraphicsService,
@@ -47,14 +52,19 @@ export class MyGameBoardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.canvasI = document.getElementById("canvas-items") as HTMLCanvasElement;
 
     const elements = [
-      this.enemiesSpritesheet.nativeElement as HTMLImageElement,
       this.hudSpritesheet.nativeElement as HTMLImageElement,
       this.itemsSpritesheet.nativeElement as HTMLImageElement,
+      this.tilesSpritesheet.nativeElement as HTMLImageElement,
+      this.enemiesSpritesheet.nativeElement as HTMLImageElement,
       this.p1Spritesheet.nativeElement as HTMLImageElement,
       this.p2Spritesheet.nativeElement as HTMLImageElement,
       this.p3Spritesheet.nativeElement as HTMLImageElement,
-      this.tilesSpritesheet.nativeElement as HTMLImageElement,
-      this.sunShiny.nativeElement as HTMLImageElement
+      this.enemiesSpritesheeti.nativeElement as HTMLImageElement,
+      this.p1Spritesheeti.nativeElement as HTMLImageElement,
+      this.p2Spritesheeti.nativeElement as HTMLImageElement,
+      this.p3Spritesheeti.nativeElement as HTMLImageElement,
+      this.sunShiny.nativeElement as HTMLImageElement,
+      this.moonShiny.nativeElement as HTMLImageElement
     ];
 
     let len = 0;
@@ -67,10 +77,20 @@ export class MyGameBoardComponent implements OnInit, AfterViewInit, OnDestroy {
             this.canvasW,
             this.canvasIS,
             this.canvasI,
-            elements[0], elements[1], elements[2], elements[3],
-            elements[4], elements[5], elements[6],
+            this.enemiesSpritesheet.nativeElement,
+            this.enemiesSpritesheeti.nativeElement,
+            this.hudSpritesheet.nativeElement,
+            this.itemsSpritesheet.nativeElement,
+            this.p1Spritesheet.nativeElement,
+            this.p1Spritesheeti.nativeElement,
+            this.p2Spritesheet.nativeElement,
+            this.p2Spritesheeti.nativeElement,
+            this.p3Spritesheet.nativeElement,
+            this.p3Spritesheeti.nativeElement,
+            this.tilesSpritesheet.nativeElement,
             [
-              { id: 'sun', image: elements[7] }
+              { id: 'sun', image: this.sunShiny.nativeElement },
+              { id: 'moon', image: this.moonShiny.nativeElement }
             ]);
           this.engine.init(this.story, this.graphics);
         }
