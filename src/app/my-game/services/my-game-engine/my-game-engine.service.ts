@@ -114,7 +114,6 @@ export class MyGameEngineService {
     this._graphics.drawWorld(SpriteType.coinGold, 9.2, 5.2)
   }
   drawWorld(): any {
-    this._graphics.drawWorld(SpriteType.cactus, 5, 3);
     this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 0, 1)
     this._graphics.drawWorld(SpriteType.grassLeftCorner, 1, 1)
     this._graphics.drawWorld(SpriteType.grassMid, 2, 1)
@@ -172,6 +171,7 @@ export class MyGameEngineService {
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 2)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 2)
 
+
     // this._graphics.drawWorld(SpriteType.liquidWater, 0, 3)
     // this._graphics.drawWorld(SpriteType.grassLeft, 1, 3)
     this._graphics.drawWorld(SpriteType.signRight, 2, 3)
@@ -182,6 +182,7 @@ export class MyGameEngineService {
     // }
     this._graphics.drawWorld(SpriteType.fence, 4, 3)
     this._graphics.drawWorld(SpriteType.fence, 5, 3)
+    this._graphics.drawWorld(SpriteType.cactus, 5, 3);
     // this._graphics.drawWorld(SpriteType.grassRight, 6, 3)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 7, 3)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 8, 3)
