@@ -73,8 +73,8 @@ export class MyPortfolioComponent implements OnInit {
   }
 
   boardParentResized(event: any) {
-    // this.boardWidth = window.innerWidth;
-    // this.boardHeight = window.innerHeight;
-    // requestAnimationFrame(() => {});
+    this.boardWidth = window.innerWidth;
+    this.boardHeight = window.innerHeight;
+    requestAnimationFrame(() => {});
   }
 }

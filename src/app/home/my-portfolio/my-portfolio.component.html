@@ -19,6 +19,6 @@
 <div (window:resize)="boardParentResized($event)" class="board">
   <my-game-board
   id="my-board"
-  height="{{boardHeight}}"
-  width="{{boardWidth}}"></my-game-board>
+  [(height)]="boardHeight"
+  [(width)]="boardWidth"></my-game-board>
 </div>
