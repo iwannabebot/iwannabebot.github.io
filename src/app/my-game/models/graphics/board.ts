@@ -1,10 +1,10 @@
-import { Sprite } from "./sprite";
-import { Canvas } from "./canvas";
-import { CanvasType } from "./canvas-type";
-import { CanvasCollection } from "./canvas-collection";
-import { SpriteCollection } from "./sprite-collection";
-import { SpriteType } from "./sprite-type";
-import { SpriteSheetColection } from "./sprite-sheet-collection";
+import { Sprite } from './sprite';
+import { Canvas } from './canvas';
+import { CanvasType } from './canvas-type';
+import { CanvasCollection } from './canvas-collection';
+import { SpriteCollection } from './sprite-collection';
+import { SpriteType } from './sprite-type';
+import { SpriteSheetColection } from './sprite-sheet-collection';
 
 export class Board {
 
@@ -24,7 +24,7 @@ export class Board {
     return f;
   }
 
-  _canvasFactor: number = 1;
+  _canvasFactor = 1;
   public get CanvasFactor(): number {
     return this._canvasFactor;
   }
@@ -32,7 +32,7 @@ export class Board {
     this._canvasFactor = c;
   }
 
-  _imageFactor: number = 1;
+  _imageFactor = 1;
   public get ImageFactor(): number {
     return this._imageFactor;
   }
@@ -66,7 +66,7 @@ export class Board {
   ) {
     scaleX = (scaleX == undefined) ? 1 : scaleX;
     scaleY = (scaleY == undefined) ? 1 : scaleY;
-    var cvs = this._canvases[on] as Canvas;
+    const cvs = this._canvases[on] as Canvas;
     if (cvs.Context != null) {
       const s = this._sprites[sprite] as Sprite;
       const img = this._spriteSheets[s.type] as HTMLImageElement;
@@ -84,28 +84,39 @@ export class Board {
         img,
         s.x, s.y, s.w, s.h,
         cx, cy, cw, ch,
-      )
+      );
     }
   }
 
   coverRectangle(
     isDay: boolean
   ) {
-    var cvs = this._canvases[CanvasType.World] as Canvas;
+    const cvs = this._canvases[CanvasType.World] as Canvas;
     if (cvs.Context != null) {
       // Apply style
-      var grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
+      const grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
       if (isDay) {
-        grd.addColorStop(0, "#d0f4f7");
-        grd.addColorStop(1, "white");
+        grd.addColorStop(0, '#d0f4f7');
+        grd.addColorStop(1, 'white');
       } else {
-        grd.addColorStop(0, "#000000");
-        grd.addColorStop(1, "#000000");
+        grd.addColorStop(0, '#000000');
+        grd.addColorStop(1, '#000000');
       }
 
       cvs.Context.fillStyle = grd;
 
       // Apply Scaling
+      cvs.Context.fillRect(0, 0, cvs._w, cvs._h);
+    }
+  }
+
+  coverVerticalGradient(on: CanvasType, color1: string, color2: string) {
+    const cvs = this.forCanvas(on);
+    if (cvs.Context != null) {
+      const grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
+      grd.addColorStop(0, color1);
+      grd.addColorStop(1, color2);
+      cvs.Context.fillStyle = grd;
       cvs.Context.fillRect(0, 0, cvs._w, cvs._h);
     }
   }

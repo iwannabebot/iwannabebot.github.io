@@ -5,38 +5,49 @@ import { SpriteType } from '../../models/graphics/sprite-type';
 
 @Injectable()
 export class MyGameEngineService {
+  hoveri = -1;
+  hoverdx = 0.05;
+  hoverx = 0;
+  snailWalk = 0;
 
   private _story: MyGameStoryService = null;
   private _graphics: MyGameGraphicsService;
   _baseTime: any;
   public step(): number {
-
-    let cTime = (window.performance &&
+    const cTime =
+      (window.performance &&
       window.performance.now &&
       window.performance.timing &&
-      window.performance.timing.navigationStart ?
-      window.performance.now() + window.performance.timing.navigationStart :
-      Date.now()) - this._baseTime;
+      window.performance.timing.navigationStart
+        ? window.performance.now() + window.performance.timing.navigationStart
+        : Date.now()) - this._baseTime;
 
     if (Number.MAX_VALUE - cTime < 1000) {
-      this._baseTime = window.performance &&
+      this._baseTime =
+        window.performance &&
         window.performance.now &&
         window.performance.timing &&
-        window.performance.timing.navigationStart ?
-        window.performance.now() + window.performance.timing.navigationStart :
-        Date.now();
+        window.performance.timing.navigationStart
+          ? window.performance.now() + window.performance.timing.navigationStart
+          : Date.now();
       return this.step();
     } else {
       return cTime;
     }
   }
 
-  constructor() { }
+  constructor() {}
 
   public init(story: MyGameStoryService, graphics: MyGameGraphicsService) {
     this._story = story;
     this._graphics = graphics;
-    this._baseTime = window.performance && window.performance.now && window.performance.timing && window.performance.timing.navigationStart ? window.performance.now() + window.performance.timing.navigationStart : Date.now();
+    this._baseTime =
+      window.performance &&
+      window.performance.now &&
+      window.performance.timing &&
+      window.performance.timing.navigationStart
+        ? window.performance.now() + window.performance.timing.navigationStart
+        : Date.now();
     this.gameLoop();
   }
 
@@ -50,15 +61,13 @@ export class MyGameEngineService {
   }
 
   getSetGo(): boolean {
-    return this != null &&
+    return (
+      this != null &&
       this._graphics != null &&
       this._graphics._board != null &&
-      this._graphics._board.isReady;
+      this._graphics._board.isReady
+    );
   }
-
-  hoveri = -1;
-  hoverdx = 0.05;
-  hoverx = 0;
 
   hoverInc() {
     if (this.hoverx > 2) {
@@ -69,20 +78,58 @@ export class MyGameEngineService {
   }
 
   drawBrackground(): any {
-    this.hoverInc()
-    this._graphics.drawCover(true);
-    this._graphics.drawWorld(SpriteType.sun, 4, 9);
-    this.hoverx = this.hoverx + (this.hoveri * this.hoverdx) / 10;
-    this._graphics.drawWorld(SpriteType.cloud1, 3 + this.hoverx, 10);
-    this._graphics.drawWorld(SpriteType.cloud1, 7 + this.hoverx, 7);
-    this._graphics.drawWorld(SpriteType.cloud1, 4 + this.hoverx, 9);
+    this.hoverInc();
+    this.hoverx = this.hoverx + this.hoveri * this.hoverdx / 10;
+    switch (new Date().getHours()) {
+      case 7:
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+      case 16:
+      case 17:
+        {
+          this._graphics.coverVerticalGradientOnBg('#d0f4f7', '#FFFFFF');
+          this._graphics.drawWorld(SpriteType.sun, 4, 9);
+          this._graphics.drawWorld(SpriteType.cloud1, 3 + this.hoverx, 10);
+          this._graphics.drawWorld(SpriteType.cloud1, 7 + this.hoverx, 7);
+          this._graphics.drawWorld(SpriteType.cloud1, 4 + this.hoverx, 9);
 
-    this._graphics.drawWorld(SpriteType.cloud1, 11 + this.hoverx, 12);
-    this._graphics.drawWorld(SpriteType.cloud1, 9 + this.hoverx, 12);
-    this._graphics.drawWorld(SpriteType.cloud1, 5 + this.hoverx, 12);
+          this._graphics.drawWorld(SpriteType.cloud1, 11 + this.hoverx, 12);
+          this._graphics.drawWorld(SpriteType.cloud1, 9 + this.hoverx, 12);
+          this._graphics.drawWorld(SpriteType.cloud1, 5 + this.hoverx, 12);
+        }
+        break;
+      case 18:
+      case 19:
+      case 20:
+      case 21:
+      case 22:
+      case 23:
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        {
+          this._graphics.coverVerticalGradientOnBg('#110000', '#000000');
+          this._graphics.drawWorld(SpriteType.moon, 1, 9, 0.3, 0.3);
+        }
+        break;
+      default:
+        {
+          this._graphics.coverVerticalGradientOnBg('#d0f4f7', '#FFFFFF');
+          this._graphics.drawWorld(SpriteType.sun, 4, 9);
+        }
+        break;
+    }
   }
-
-  snailWalk = 0;
 
   drawObjects(): any {
     this.snailWalk = this.snailWalk + 1;
@@ -93,109 +140,123 @@ export class MyGameEngineService {
     if (this.hoveri == -1) {
       if (this.snailWalk < 10) {
         this._graphics.drawWorld(SpriteType.snailWalk1, 4 + this.hoverx, 2.4);
-        this._graphics.drawWorld(SpriteType.snailWalk1, 11 + this.hoverx/2, 4.4);
+        this._graphics.drawWorld(
+          SpriteType.snailWalk1,
+          11 + this.hoverx / 2,
+          4.4
+        );
       } else {
         this._graphics.drawWorld(SpriteType.snailWalk2, 4 + this.hoverx, 2.4);
-        this._graphics.drawWorld(SpriteType.snailWalk2, 11 + this.hoverx/2, 4.4);
+        this._graphics.drawWorld(
+          SpriteType.snailWalk2,
+          11 + this.hoverx / 2,
+          4.4
+        );
       }
     } else {
       if (this.snailWalk < 10) {
         this._graphics.drawWorld(SpriteType.snailWalk1i, 4 + this.hoverx, 2.4);
-        this._graphics.drawWorld(SpriteType.snailWalk1i, 11 + this.hoverx/2, 4.4)
+        this._graphics.drawWorld(
+          SpriteType.snailWalk1i,
+          11 + this.hoverx / 2,
+          4.4
+        );
       } else {
         this._graphics.drawWorld(SpriteType.snailWalk2i, 4 + this.hoverx, 2.4);
-        this._graphics.drawWorld(SpriteType.snailWalk2i, 11 + this.hoverx/2, 4.4);
+        this._graphics.drawWorld(
+          SpriteType.snailWalk2i,
+          11 + this.hoverx / 2,
+          4.4
+        );
       }
     }
 
-
-    this._graphics.drawWorld(SpriteType.coinGold, 7, 4.6)
-    this._graphics.drawWorld(SpriteType.coinGold, 8, 5.25)
-    this._graphics.drawWorld(SpriteType.coinGold, 9.2, 5.2)
+    this._graphics.drawWorld(SpriteType.coinGold, 7, 4.6);
+    this._graphics.drawWorld(SpriteType.coinGold, 8, 5.25);
+    this._graphics.drawWorld(SpriteType.coinGold, 9.2, 5.2);
   }
   drawWorld(): any {
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 0, 1)
-    this._graphics.drawWorld(SpriteType.grassLeftCorner, 1, 1)
-    this._graphics.drawWorld(SpriteType.grassMid, 2, 1)
-    this._graphics.drawWorld(SpriteType.grassMid, 3, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 4, 1)
-    this._graphics.drawWorld(SpriteType.grassRightCorner, 4, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 5, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 6, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 5, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 6, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 7, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 8, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 9, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 10, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 11, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 12, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 13, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 14, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 11, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 12, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 13, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 14, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 15, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 16, 1)
-    this._graphics.drawWorld(SpriteType.grassCenter, 17, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 18, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 19, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 20, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 21, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 22, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 23, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 24, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 25, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 26, 1)
-    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 27, 1)
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 0, 1);
+    this._graphics.drawWorld(SpriteType.grassLeftCorner, 1, 1);
+    this._graphics.drawWorld(SpriteType.grassMid, 2, 1);
+    this._graphics.drawWorld(SpriteType.grassMid, 3, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 4, 1);
+    this._graphics.drawWorld(SpriteType.grassRightCorner, 4, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 5, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 6, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 5, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 6, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 7, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 8, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 9, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 10, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 11, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 12, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 13, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 14, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 11, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 12, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 13, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 14, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 15, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 16, 1);
+    this._graphics.drawWorld(SpriteType.grassCenter, 17, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 18, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 19, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 20, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 21, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 22, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 23, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 24, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 25, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 26, 1);
+    this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 27, 1);
 
     // this._graphics.drawWorld(SpriteType.liquidWater, 0, 2)
     // this._graphics.drawWorld(SpriteType.p1duck, 1, 2)
-    this._graphics.drawWorld(SpriteType.grassLeftCorner, 2, 2)
-    this._graphics.drawWorld(SpriteType.grassMid, 3, 2)
-    this._graphics.drawWorld(SpriteType.grassMid, 4, 2)
-    this._graphics.drawWorld(SpriteType.grassMid, 5, 2)
-    this._graphics.drawWorld(SpriteType.grassRightCorner, 6, 2)
+    this._graphics.drawWorld(SpriteType.grassLeftCorner, 2, 2);
+    this._graphics.drawWorld(SpriteType.grassMid, 3, 2);
+    this._graphics.drawWorld(SpriteType.grassMid, 4, 2);
+    this._graphics.drawWorld(SpriteType.grassMid, 5, 2);
+    this._graphics.drawWorld(SpriteType.grassRightCorner, 6, 2);
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 7, 2)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 8, 2)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 9, 2)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 10, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 11, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 12, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 13, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 14, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 15, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 16, 2)
-    this._graphics.drawWorld(SpriteType.grassCenter, 17, 2)
+    this._graphics.drawWorld(SpriteType.grassCenter, 11, 2);
+    this._graphics.drawWorld(SpriteType.grassCenter, 12, 2);
+    this._graphics.drawWorld(SpriteType.grassCenter, 13, 2);
+    this._graphics.drawWorld(SpriteType.grassCenter, 14, 2);
+    this._graphics.drawWorld(SpriteType.grassCenter, 15, 2);
+    this._graphics.drawWorld(SpriteType.grassCenter, 16, 2);
+    this._graphics.drawWorld(SpriteType.grassCenter, 17, 2);
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 2)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 2)
 
-
     // this._graphics.drawWorld(SpriteType.liquidWater, 0, 3)
     // this._graphics.drawWorld(SpriteType.grassLeft, 1, 3)
-    this._graphics.drawWorld(SpriteType.signRight, 2, 3)
+    this._graphics.drawWorld(SpriteType.signRight, 2, 3);
     // if ( this.i % 50 == 0) {
     //   this._graphics.drawWorld(SpriteType.p2duck, 3, 3)
     // } else {
     //   this._graphics.drawWorld(SpriteType.p2hurt, 3, 3.3)
     // }
-    this._graphics.drawWorld(SpriteType.fence, 4, 3)
-    this._graphics.drawWorld(SpriteType.fence, 5, 3)
+    this._graphics.drawWorld(SpriteType.fence, 4, 3);
+    this._graphics.drawWorld(SpriteType.fence, 5, 3);
     this._graphics.drawWorld(SpriteType.cactus, 5, 3);
     // this._graphics.drawWorld(SpriteType.grassRight, 6, 3)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 7, 3)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 8, 3)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 9, 3)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 10, 3)
-    this._graphics.drawWorld(SpriteType.grassCenter, 11, 3)
-    this._graphics.drawWorld(SpriteType.grassCenter, 12, 3)
-    this._graphics.drawWorld(SpriteType.grassCenter, 13, 3)
-    this._graphics.drawWorld(SpriteType.grassCenter, 14, 3)
-    this._graphics.drawWorld(SpriteType.grassCenter, 15, 3)
-    this._graphics.drawWorld(SpriteType.grassLeft, 15, 3)
-    this._graphics.drawWorld(SpriteType.grassMid, 16, 3)
-    this._graphics.drawWorld(SpriteType.grassRightCorner, 17, 3)
+    this._graphics.drawWorld(SpriteType.grassCenter, 11, 3);
+    this._graphics.drawWorld(SpriteType.grassCenter, 12, 3);
+    this._graphics.drawWorld(SpriteType.grassCenter, 13, 3);
+    this._graphics.drawWorld(SpriteType.grassCenter, 14, 3);
+    this._graphics.drawWorld(SpriteType.grassCenter, 15, 3);
+    this._graphics.drawWorld(SpriteType.grassLeft, 15, 3);
+    this._graphics.drawWorld(SpriteType.grassMid, 16, 3);
+    this._graphics.drawWorld(SpriteType.grassRightCorner, 17, 3);
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 3)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 3)
 
@@ -209,13 +270,13 @@ export class MyGameEngineService {
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 7, 4)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 8, 4)
     // this._graphics.drawWorld(SpriteType.liquidWaterTopmid, 9, 4)
-    this._graphics.drawWorld(SpriteType.grassCliffLeft, 10, 4)
-    this._graphics.drawWorld(SpriteType.grassMid, 11, 4)
-    this._graphics.drawWorld(SpriteType.grassMid, 12, 4)
-    this._graphics.drawWorld(SpriteType.grassHillLeft2, 13, 4)
-    this._graphics.drawWorld(SpriteType.grassCenter, 14, 4)
-    this._graphics.drawWorld(SpriteType.grassCenter, 15, 4)
-    this._graphics.drawWorld(SpriteType.grassCenter, 16, 4)
+    this._graphics.drawWorld(SpriteType.grassCliffLeft, 10, 4);
+    this._graphics.drawWorld(SpriteType.grassMid, 11, 4);
+    this._graphics.drawWorld(SpriteType.grassMid, 12, 4);
+    this._graphics.drawWorld(SpriteType.grassHillLeft2, 13, 4);
+    this._graphics.drawWorld(SpriteType.grassCenter, 14, 4);
+    this._graphics.drawWorld(SpriteType.grassCenter, 15, 4);
+    this._graphics.drawWorld(SpriteType.grassCenter, 16, 4);
     // this._graphics.drawWorld(SpriteType.grassRight, 17, 4)
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 4)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 4)
@@ -233,10 +294,10 @@ export class MyGameEngineService {
     // this._graphics.drawWorld(SpriteType.grassCliffLeft, 10, 5)
     // this._graphics.drawWorld(SpriteType.grassMid, 11, 5)
     // this._graphics.drawWorld(SpriteType.grassMid, 12, 5)
-    this._graphics.drawWorld(SpriteType.grassHillLeft, 13, 5)
-    this._graphics.drawWorld(SpriteType.grassHillLeft2, 14, 5)
-    this._graphics.drawWorld(SpriteType.grassCenter, 15, 5)
-    this._graphics.drawWorld(SpriteType.grassCenter, 16, 5)
+    this._graphics.drawWorld(SpriteType.grassHillLeft, 13, 5);
+    this._graphics.drawWorld(SpriteType.grassHillLeft2, 14, 5);
+    this._graphics.drawWorld(SpriteType.grassCenter, 15, 5);
+    this._graphics.drawWorld(SpriteType.grassCenter, 16, 5);
     // this._graphics.drawWorld(SpriteType.grassRight, 17, 5)
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 5)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 5)
@@ -255,10 +316,10 @@ export class MyGameEngineService {
     // this._graphics.drawWorld(SpriteType.grassMid, 11, 6)
     // this._graphics.drawWorld(SpriteType.grassMid, 12, 6)
     // this._graphics.drawWorld(SpriteType.grassHillLeft, 13, 6)
-    this._graphics.drawWorld(SpriteType.grassHillLeft, 14, 6)
-    this._graphics.drawWorld(SpriteType.grassMid, 15, 6)
-    this._graphics.drawWorld(SpriteType.grassMid, 16, 6)
-    this._graphics.drawWorld(SpriteType.grassCliffRight, 17, 6)
+    this._graphics.drawWorld(SpriteType.grassHillLeft, 14, 6);
+    this._graphics.drawWorld(SpriteType.grassMid, 15, 6);
+    this._graphics.drawWorld(SpriteType.grassMid, 16, 6);
+    this._graphics.drawWorld(SpriteType.grassCliffRight, 17, 6);
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 6)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 6)
 
@@ -278,8 +339,8 @@ export class MyGameEngineService {
     // this._graphics.drawWorld(SpriteType.grassHillLeft, 13, 7)
     // this._graphics.drawWorld(SpriteType.grassHillLeft, 14, 7)
     // this._graphics.drawWorld(SpriteType.signExit, 15, 7)
-    this._graphics.drawWorld(SpriteType.doorclosedMid, 16, 7)
-    this._graphics.drawWorld(SpriteType.signExit, 17, 7)
+    this._graphics.drawWorld(SpriteType.doorclosedMid, 16, 7);
+    this._graphics.drawWorld(SpriteType.signExit, 17, 7);
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 7)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 7)
 
@@ -299,10 +360,9 @@ export class MyGameEngineService {
     // this._graphics.drawWorld(SpriteType.grassHillLeft, 13, 8)
     // this._graphics.drawWorld(SpriteType.grassHillLeft, 14, 8)
     // this._graphics.drawWorld(SpriteType.grassMid, 15, 8)
-    this._graphics.drawWorld(SpriteType.doorclosedTop, 16, 8)
+    this._graphics.drawWorld(SpriteType.doorclosedTop, 16, 8);
     // this._graphics.drawWorld(SpriteType.grassCliffRight, 17, 8)
     // this._graphics.drawWorld(SpriteType.liquidWater, 18, 8)
     // this._graphics.drawWorld(SpriteType.liquidWater, 19, 8)
   }
-
 }

@@ -30,7 +30,7 @@ export class MyGameGraphicsService {
     images: any[]) {
 
       this.createBoard(canvasB, canvasWS, canvasW, canvasIS, canvasI);
-      this.createSpriteSheets(en,eni,hu,it,p1,p1i,p2,p2i,p3,p3i,ti,images);
+      this.createSpriteSheets(en, eni, hu, it, p1, p1i, p2, p2i, p3, p3i, ti, images);
       this.createSprite();
   }
 
@@ -59,7 +59,7 @@ export class MyGameGraphicsService {
       this._board._spriteSheets[SpriteSheetType.Tiles] = ti;
       const _th = this;
       images.forEach((sprt: any) => {
-        _th._board._spriteSheets[sprt.id] = sprt.image
+        _th._board._spriteSheets[sprt.id] = sprt.image;
       });
   }
 
@@ -452,6 +452,10 @@ export class MyGameGraphicsService {
 
   drawCover(isDay: boolean) {
     this._board.coverRectangle(isDay);
+  }
+
+  coverVerticalGradientOnBg(color1: string, color2: string) {
+    this._board.coverVerticalGradient(CanvasType.World, color1, color2);
   }
 
   drawBackground(spriteSheetType: SpriteType, bx: number, by: number, scaleX?: number, scaleY?: number, rotateInDegree?: number ) {

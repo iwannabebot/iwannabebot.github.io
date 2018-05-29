@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+// tslint:disable-next-line:import-blacklist
 import * as Rx from 'rxjs';
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'my-portfolio',
   templateUrl: './my-portfolio.component.html',
   styleUrls: ['./my-portfolio.component.scss']
 })
 export class MyPortfolioComponent implements OnInit {
-
   public name: string;
   public names = ['Nilay', 'a FullStack Developer'];
   public index = 0;
   public length = 0;
   public sub: any;
-  public dir: boolean = true;
+  public dir = true;
   public social = {
-    medium : "https://medium.com/@nilayvishwakarma",
-    stackoverflow : "https://stackoverflow.com/users/3331861/nilay-vishwakarma",
-    github: "https://github.com/iwannabebot/",
-    linkedin: "https://www.linkedin.com/in/nilayvishwakarma/",
-    twitter: "https://twitter.com/iwannabebot"
-  }
+    medium: 'https://medium.com/@nilayvishwakarma',
+    stackoverflow: 'https://stackoverflow.com/users/3331861/nilay-vishwakarma',
+    github: 'https://github.com/iwannabebot/',
+    linkedin: 'https://www.linkedin.com/in/nilayvishwakarma/',
+    twitter: 'https://twitter.com/iwannabebot'
+  };
   public _boardWidth = 640;
   public _boardHeight = 320;
   set boardWidth(w: number) {
@@ -67,10 +68,8 @@ export class MyPortfolioComponent implements OnInit {
     // this.sub.subscribe();
     this.boardWidth = window.innerWidth;
     this.boardHeight = window.innerHeight;
-  }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+
   }
 
   boardParentResized(event: any) {
@@ -78,5 +77,4 @@ export class MyPortfolioComponent implements OnInit {
     // this.boardHeight = window.innerHeight;
     // requestAnimationFrame(() => {});
   }
-
 }
