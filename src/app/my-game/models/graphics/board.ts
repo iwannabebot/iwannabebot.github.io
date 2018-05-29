@@ -94,7 +94,7 @@ export class Board {
     const cvs = this._canvases[CanvasType.World] as Canvas;
     if (cvs.Context != null) {
       // Apply style
-      const grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
+      const grd = cvs.Context.createLinearGradient(0, 0, cvs._w/2, cvs._h);
       if (isDay) {
         grd.addColorStop(0, '#d0f4f7');
         grd.addColorStop(1, 'white');
@@ -113,7 +113,7 @@ export class Board {
   coverVerticalGradient(on: CanvasType, color1: string, color2: string) {
     const cvs = this.forCanvas(on);
     if (cvs.Context != null) {
-      const grd = cvs.Context.createLinearGradient(0, 0, 0, cvs._h);
+      const grd = cvs.Context.createLinearGradient(0, 0, cvs._w, cvs._h);
       grd.addColorStop(0, color1);
       grd.addColorStop(1, color2);
       cvs.Context.fillStyle = grd;

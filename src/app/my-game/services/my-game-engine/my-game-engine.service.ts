@@ -119,7 +119,7 @@ export class MyGameEngineService {
       case 6:
         {
           this._graphics.coverVerticalGradientOnBg('#111322', '#000000');
-          this._graphics.drawWorld(SpriteType.moon, 1, 9, 0.3, 0.3);
+          this._graphics.drawWorld(SpriteType.moon, 0.8, 9, 0.3, 0.3);
         }
         break;
       default:
