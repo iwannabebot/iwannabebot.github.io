@@ -15,7 +15,7 @@ import { MyGameGraphicsService } from './services/my-game-graphics/my-game-graph
     MyGameBoardComponent
   ],
   declarations: [
-    MyGameBoardComponent
+    MyGameBoardComponent,
   ],
   providers: [
     MyGameGraphicsService,

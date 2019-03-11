@@ -4,7 +4,7 @@
     <header>
       <div class="wobble">👋</div><span> I'm </span><span class="highlight">{{name}}</span>
     </header>
-    <span class="sub-banner">Full Stack Developer | Frontend Monk | Lazy Blogger</span>
+    <span class="sub-banner">Full Stack Developer | Blogger | Informed Liberal </span>
   </div>
   <div class="social">
       <div></div>
@@ -13,12 +13,13 @@
       <a target="_blank" [href]="social.github" class="social-button"><i class="fab fa-github"></i></a>
       <a target="_blank" [href]="social.linkedin" class="social-button"><i class="fab fa-linkedin"></i></a>
       <a target="_blank" [href]="social.twitter" class="social-button"><i class="fab fa-twitter"></i></a>
+      <a target="_blank" [href]="social.grapecity" class="social-button"><i class="gcicon gcicon-product_gc"></i></a>
       <div></div>
   </div>
 </div>
 <div (window:resize)="boardParentResized($event)" class="board">
-  <my-game-board
+  <app-utopia
   id="my-board"
   [(height)]="boardHeight"
-  [(width)]="boardWidth"></my-game-board>
+  [(width)]="boardWidth"></app-utopia>
 </div>

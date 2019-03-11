@@ -19,7 +19,8 @@ export class MyPortfolioComponent implements OnInit {
     stackoverflow: 'https://stackoverflow.com/users/3331861/nilay-vishwakarma',
     github: 'https://github.com/iwannabebot/',
     linkedin: 'https://www.linkedin.com/in/nilayvishwakarma/',
-    twitter: 'https://twitter.com/iwannabebot'
+    twitter: 'https://twitter.com/iwannabebot',
+    grapecity: 'https://www.grapecity.com/en/blogs/profiles/nilayvishwakarma'
   };
   public _boardWidth = 640;
   public _boardHeight = 320;

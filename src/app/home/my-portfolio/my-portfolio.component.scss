@@ -1,5 +1,5 @@
 $highlight: #f86942;
-$main: #352245;
+$main: #ff2245;
 $bg: #fef7d6;
 .main-page {
   z-index: 2;
@@ -36,15 +36,21 @@ $bg: #fef7d6;
 
   .social {
     display: inline-grid;
-    grid-template-columns: 1fr auto auto auto auto auto 1fr;
+    grid-template-columns: 1fr auto auto auto auto auto auto 1fr;
     .social-button {
       font-size: 48px;
       padding: 10px;
       margin: 0px 5px;
       display: inline;
+      text-decoration: none !important;
       .fab {
         vertical-align: bottom;
       }
+    }
+    .gcicon {
+      //color: #470A68 !important;
+      vertical-align: bottom;
+      display: inline-block;
     }
   }
 }
