@@ -1,13 +1,7 @@
+import { UtopiaSpriteEditor } from "./engines/spriteeditor";
+import { UtopiaWorld } from "./engines/world";
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import * as p5 from "p5";
-import {
-  UtopiaSpriteDetail,
-  UtopiaSprite,
-  UtopiaSpriteData
-} from "./sprites/sprite";
-import { UtopiaPlayer } from "./models/player";
-import { UtopiaFloor } from "./models/floor";
-import { UtopiaHud } from './models/hud';
 @Component({
   selector: "app-utopia",
   template: `
@@ -43,32 +37,33 @@ export class UtopiaComponent implements OnInit, OnDestroy {
   };
 
   private drawing = function(p: p5) {
-    const player = new UtopiaPlayer(p);
-    const floor = new UtopiaFloor(p);
-    const hud = new UtopiaHud(p, player);
+    let spriteEditor: UtopiaSpriteEditor;
     p.setup = () => {
-      UtopiaSprite.Init(p);
+      spriteEditor = new UtopiaSpriteEditor(p);
       p.createCanvas(p.windowWidth, p.windowHeight).parent("utopia");
     };
 
     // http://keycode.info/
     p.keyPressed = () => {
-      switch (p.keyCode) {
-        case 38: {
-          player.IsUp = true;
-          break;
-        }
-      }
+      spriteEditor.keyInput(p.keyCode);
     };
 
+    p.mouseClicked = () => {
+
+    };
+
+    p.mouseDragged = () => {};
+
+    p.mouseMoved = () => {};
+
+    p.mousePressed = () => {};
+
+    p.mouseReleased = () => {};
+
+    p.mouseWheel = () => {};
+
     p.draw = () => {
-      p.background(204, 254, 215);
-      floor.Update();
-      player.Update();
-      hud.Update();
-      floor.Draw();
-      player.Draw();
-      hud.Draw();
+      spriteEditor.draw();
     };
   };
 }

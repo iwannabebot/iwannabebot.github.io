@@ -19,14 +19,14 @@ body, html { height:100%; }
 body{
   font-family: $font;
 }
-.night {
-  background-color: $main;
-  color: $bg;
-}
-.day {
-  background-color: $bg;
-  color: $main;
-}
+// .night {
+//   background-color: $main;
+//   color: $bg;
+// }
+// .day {
+//   background-color: $bg;
+//   color: $main;
+// }
 a { color: inherit; }
 .highlight {
   color: $highlight;
