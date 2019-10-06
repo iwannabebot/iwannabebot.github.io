@@ -1,0 +1,29 @@
+{
+    "restartable": "rs",
+    "ignore": [
+        ".git",
+        "node_modules",
+        "node_modules/**/node_modules",
+        "dist"
+    ],
+    "verbose": true,
+    "exec": "node build.js --output='dist' --view='index.html;assets;blogs;tools;easter' --style='style' --script='script'",
+    "execMap": {
+        "js": "node --harmony"
+    },
+    "events": {
+        "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    },
+    "watch": [
+        "blogs",
+        "tools",
+        "easter",
+        "ops",
+        "script",
+        "style"
+    ],
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "ext": "js,json,md,html,htm,scss"
+}

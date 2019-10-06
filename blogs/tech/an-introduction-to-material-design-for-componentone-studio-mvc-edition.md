@@ -1,8 +1,11 @@
 ---
 title: An Introduction to Material Design for ComponentOne Studio — MVC Edition
 description: Material design is a versatile set of guidelines that support the best practices of user interface design.
-author: nilayvishwakarma
+author: @iwannabebot
 date: 09/19/2019
+image: img
+url: url
+style: blogs
 ---
 
 # An Introduction to Material Design for ComponentOne Studio — MVC Edition
@@ -19,29 +22,19 @@ Google announced Material and it’s specification in mid-2014, defining Materia
 [ComponentOne MVC](https://www.grapecity.com/en/aspnet-mvc) controls lets you add Material design look and feel by using [Material Design Lite](https://getmdl.io/started/index.html#download). It does not rely on any JS framework. It only takes two steps to add material support in your application. Our material theme should work in all evergreen browsers alike, with full support in Chrome for Android and Mobile Safari. For older browsers like IE9, we degrade to CSS only.
 There are two ways to use our inbuilt Material themes: with HTML/tag helpers and with our theme builder.
 
-## ComponentOne MVC HTML/Tag Helpers
-All the resources used with ComponentOne controls are registered when you create a web application using our MVC template. By default, when you create an MVC application with ComponentOne controls, it uses a default theme. You are provided many different pre-defined visual themes. The themes are consistent across all the ComponentOne controls for your project.
-- If you are using ComponentOne Template you can use the application Wizard to set the theme.
-![c1-wizard](https://miro.medium.com/max/840/1*-RciWmhdAsN-qfzV-sxnJg.png)
-- If you are using a [Visual Studio Template](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/UsingVSTemplate.html) you can set material theme manually while [registering resources](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/RegisteringResources.html) for your application.
-To apply material theme in your application, you need to add the following code in _Layout.cshtml (Views/Shared/_Layout.cshtml)
-
-https://gist.github.com/iwannabebot/04ac1db9b5bafbc280979a8b9a4fbcff.js
-
-Material themes are written in a specific format to allow several combinations of primary/accent colours. The format is:
-
 https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc#file-materialformat-txt
 
-[Here is list of several primary/accent colors that you can use as material theme.](https://www.grapecity.com/componentone/NetHelp/c1mvchelpers/webframe.html#Themes.html)
+```js
+console.log(This is an example code);
+```
 
-## Using a Theme Builder
-We’ve also made [an interactive theme builder](http://demos.wijmo.com/5/Angular/MaterialDesignLite/MaterialDesignLite/). This builder allows you to choose colors and preview your theme with our controls before adding them to your application. If you are using a combination (of primary and accent colors) you would have to include a specific CSS file, compared to some other combination. Therefore, we felt it was necessary to provide you an interactive theme builder, that will decide what resources you need to download and include in you web application.
-You can also preview how these different combinations of primary and accent colours looks with C1 MVC controls.
-Follow these steps:
-- Include the Material Lite JavaScript file in _Layout page of your application.
-https://gist.github.com/iwannabebot/d1a5760bfeef489869b961baf7b88e41#file-updatelayout-cshtml
-- Use our theme builder to decide some colour combinations. After deciding some arbitrary colour combination, you would be provided with a code to include in your layout page. Example:
-https://gist.github.com/iwannabebot/8b510f41e0ccef2f2f53eab4a87acc50#file-updatelayout-cshtml
-- You can optionally include Material Icons in your application:
-https://gist.github.com/iwannabebot/e99e4697c13389f4813ed7498ddd2afe#file-updatelayout-cshtml
-[Here is a live version of our MVC controls with a Material theme.](https://demos.componentone.com/ASPNET/MVCExplorer/FlexGrid?theme=material.indigo-pink)
+
+```cs
+public class TestClass : IDisposable {
+    public Connection Connection { get; set; }
+    public void Dispose() {
+        Connection = null;
+    }
+}
+```
+

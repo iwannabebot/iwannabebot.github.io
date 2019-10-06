@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    {{__META__}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">F
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/ascetic.min.css" />
+    {{__STYLE__}}
 </head>
+
 <body>
-    {{_CONTENT_}}
+    <div class="header">
+    </div>
+    <div class="container">
+        <div class="main">
+            {{__CONTENT__}}
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/cs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/cpp.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.classList"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script>
+        if (!SVGElement.prototype.contains) {
+            SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
+        }
+        window.onload = function (ev) {
+            // hljs.initHighlightingOnLoad();
+            hljs.initHighlighting.called = false;
+            hljs.initHighlighting();
+            const pres = document.getElementsByTagName("code");
+            for (let i = 0; i < pres.length; i++) {
+                if (pres[i].parentElement.tagName.toLowerCase() === "pre") {
+                    var el = document.createElement("button");
+                    el.className = "btn";
+                    el.innerHTML = '<i class="fa fa-clipboard"></i>';
+                    el.setAttribute("data-clipboard-target", "#_code" + i);
+                    el.setAttribute("data-clipboard-action", "copy");
+                    el.onclick = function (e) { };
+                    pres[i].parentElement.appendChild(el);
+                    pres[i].id = "_code" + i;
+                }
+            }
+            const as = document.getElementsByTagName("a");
+            for (let i = 0; i < as.length; i++) {
+                as[i].setAttribute("data-tippy-content", as[i]["href"]);
+            }
+            // TIPPY
+            const instances = tippy(".btn", {
+                content: "Copied to Clipboard",
+                duration: 1000,
+                arrow: true,
+                arrowType: "round", // or 'sharp' (default)
+                animation: "fade",
+                trigger: "click",
+                theme: 'light'
+            });
+            var clipboard = new ClipboardJS(".btn");
+        };
+    </script>
+    {{__SCRIPT__}}
 </body>
+
 </html>
