@@ -10,7 +10,7 @@ date: 09/19/2019
 > IMPORTANT:
 > I published this article originally on GrapeCity’s website as An Introduction to Material Design for MVC. This blog is a reading material for developers using ComponentOne Studio — MVC Edition.
 
-https://miro.medium.com/max/1200/1*lEP3yMUAjQGomEMJpOaQzQ.png
+![banner](https://miro.medium.com/max/1200/1*lEP3yMUAjQGomEMJpOaQzQ.png)
 
 Material design is a versatile set of guidelines that support the best practices of user interface design. It provides uniform specifications for themes, layouts, animation, components, and typography to let you express your brand with confidence. Material design is inspired by the physical world and its texture — how they reflect light, and cast shadows with a minimalist and clean approach.
 Google announced Material and it’s specification in mid-2014, defining Material as based on paper and ink with advanced implementations. As of today, all of Google’s mobile applications for Android have applied Material.
@@ -22,7 +22,7 @@ There are two ways to use our inbuilt Material themes: with HTML/tag helpers and
 ## ComponentOne MVC HTML/Tag Helpers
 All the resources used with ComponentOne controls are registered when you create a web application using our MVC template. By default, when you create an MVC application with ComponentOne controls, it uses a default theme. You are provided many different pre-defined visual themes. The themes are consistent across all the ComponentOne controls for your project.
 - If you are using ComponentOne Template you can use the application Wizard to set the theme.
-https://miro.medium.com/max/840/1*-RciWmhdAsN-qfzV-sxnJg.png
+![c1-wizard](https://miro.medium.com/max/840/1*-RciWmhdAsN-qfzV-sxnJg.png)
 - If you are using a [Visual Studio Template](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/UsingVSTemplate.html) you can set material theme manually while [registering resources](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/RegisteringResources.html) for your application.
 To apply material theme in your application, you need to add the following code in _Layout.cshtml (Views/Shared/_Layout.cshtml)
 
