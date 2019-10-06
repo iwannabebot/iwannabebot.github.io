@@ -1,3 +1,10 @@
+---
+title: An Introduction to Material Design for ComponentOne Studio — MVC Edition
+description: Material design is a versatile set of guidelines that support the best practices of user interface design.
+author: nilayvishwakarma
+date: 09/19/2019
+---
+
 # An Introduction to Material Design for ComponentOne Studio — MVC Edition
 
 > IMPORTANT:
@@ -19,7 +26,7 @@ https://miro.medium.com/max/840/1*-RciWmhdAsN-qfzV-sxnJg.png
 - If you are using a [Visual Studio Template](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/UsingVSTemplate.html) you can set material theme manually while [registering resources](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/RegisteringResources.html) for your application.
 To apply material theme in your application, you need to add the following code in _Layout.cshtml (Views/Shared/_Layout.cshtml)
 
-<script src="https://gist.github.com/iwannabebot/04ac1db9b5bafbc280979a8b9a4fbcff.js"></script>
+https://gist.github.com/iwannabebot/04ac1db9b5bafbc280979a8b9a4fbcff.js
 
 Material themes are written in a specific format to allow several combinations of primary/accent colours. The format is:
 

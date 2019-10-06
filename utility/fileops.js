@@ -16,7 +16,7 @@ exports.ReadFiles = function (_dirname, rootPath) {
         
         files.forEach(function (file) {
             if (fs.statSync(path.join(absRoot, file)).isDirectory()) {
-                let childFiles = ReadFiles(_dirname, path.join(rootPath, file));
+                let childFiles = module.exports.ReadFiles(_dirname, path.join(rootPath, file));
                 filelist.push(...childFiles);
             }
             else {
