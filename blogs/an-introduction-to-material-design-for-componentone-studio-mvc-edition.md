@@ -1,12 +1,12 @@
-# An Introduction to Material Design for ComponentOne Studio — MVC Edition
+# An Introduction to Material Design for ComponentOne Studio â€” MVC Edition
 
 > IMPORTANT:
-> I published this article originally on GrapeCity’s website as An Introduction to Material Design for MVC. This blog is a reading material for developers using ComponentOne Studio — MVC Edition.
+> I published this article originally on GrapeCityâ€™s website as An Introduction to Material Design for MVC. This blog is a reading material for developers using ComponentOne Studio â€” MVC Edition.
 
 https://miro.medium.com/max/1200/1*lEP3yMUAjQGomEMJpOaQzQ.png
 
-Material design is a versatile set of guidelines that support the best practices of user interface design. It provides uniform specifications for themes, layouts, animation, components, and typography to let you express your brand with confidence. Material design is inspired by the physical world and its texture — how they reflect light, and cast shadows with a minimalist and clean approach.
-Google announced Material and it’s specification in mid-2014, defining Material as based on paper and ink with advanced implementations. As of today, all of Google’s mobile applications for Android have applied Material.
+Material design is a versatile set of guidelines that support the best practices of user interface design. It provides uniform specifications for themes, layouts, animation, components, and typography to let you express your brand with confidence. Material design is inspired by the physical world and its texture â€” how they reflect light, and cast shadows with a minimalist and clean approach.
+Google announced Material and itâ€™s specification in mid-2014, defining Material as based on paper and ink with advanced implementations. As of today, all of Googleâ€™s mobile applications for Android have applied Material.
 
 ## How to use Material Design with ComponentOne MVC Controls
 [ComponentOne MVC](https://www.grapecity.com/en/aspnet-mvc) controls lets you add Material design look and feel by using [Material Design Lite](https://getmdl.io/started/index.html#download). It does not rely on any JS framework. It only takes two steps to add material support in your application. Our material theme should work in all evergreen browsers alike, with full support in Chrome for Android and Mobile Safari. For older browsers like IE9, we degrade to CSS only.
@@ -18,9 +18,7 @@ All the resources used with ComponentOne controls are registered when you create
 https://miro.medium.com/max/840/1*-RciWmhdAsN-qfzV-sxnJg.png
 - If you are using a [Visual Studio Template](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/UsingVSTemplate.html) you can set material theme manually while [registering resources](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/RegisteringResources.html) for your application.
 To apply material theme in your application, you need to add the following code in _Layout.cshtml (Views/Shared/_Layout.cshtml)
-
-https://gist.github.com/iwannabebot/04ac1db9b5bafbc280979a8b9a4fbcff.js
-
+<script src="https://gist.github.com/iwannabebot/04ac1db9b5bafbc280979a8b9a4fbcff.js"></script>
 Material themes are written in a specific format to allow several combinations of primary/accent colours. The format is:
 
 https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc#file-materialformat-txt
@@ -28,7 +26,7 @@ https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc#file-materi
 [Here is list of several primary/accent colors that you can use as material theme.](https://www.grapecity.com/componentone/NetHelp/c1mvchelpers/webframe.html#Themes.html)
 
 ## Using a Theme Builder
-We’ve also made [an interactive theme builder](http://demos.wijmo.com/5/Angular/MaterialDesignLite/MaterialDesignLite/). This builder allows you to choose colors and preview your theme with our controls before adding them to your application. If you are using a combination (of primary and accent colors) you would have to include a specific CSS file, compared to some other combination. Therefore, we felt it was necessary to provide you an interactive theme builder, that will decide what resources you need to download and include in you web application.
+Weâ€™ve also made [an interactive theme builder](http://demos.wijmo.com/5/Angular/MaterialDesignLite/MaterialDesignLite/). This builder allows you to choose colors and preview your theme with our controls before adding them to your application. If you are using a combination (of primary and accent colors) you would have to include a specific CSS file, compared to some other combination. Therefore, we felt it was necessary to provide you an interactive theme builder, that will decide what resources you need to download and include in you web application.
 You can also preview how these different combinations of primary and accent colours looks with C1 MVC controls.
 Follow these steps:
 - Include the Material Lite JavaScript file in _Layout page of your application.
