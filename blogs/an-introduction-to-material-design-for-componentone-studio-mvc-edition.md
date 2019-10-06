@@ -18,7 +18,9 @@ All the resources used with ComponentOne controls are registered when you create
 https://miro.medium.com/max/840/1*-RciWmhdAsN-qfzV-sxnJg.png
 - If you are using a [Visual Studio Template](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/UsingVSTemplate.html) you can set material theme manually while [registering resources](http://help.grapecity.com/componentone/NetHelp/c1mvchelpers/RegisteringResources.html) for your application.
 To apply material theme in your application, you need to add the following code in _Layout.cshtml (Views/Shared/_Layout.cshtml)
+
 <script src="https://gist.github.com/iwannabebot/04ac1db9b5bafbc280979a8b9a4fbcff.js"></script>
+
 Material themes are written in a specific format to allow several combinations of primary/accent colours. The format is:
 
 https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc#file-materialformat-txt
