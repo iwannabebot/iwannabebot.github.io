@@ -28,6 +28,9 @@ https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc#file-materi
 console.log(This is an example code);
 ```
 
+```js
+var i = 0;
+```
 
 ```cs
 public class TestClass : IDisposable {
