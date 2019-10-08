@@ -66,17 +66,11 @@ exports.WriteFile = function (rootPath, text, callback) {
 };
 
 exports.Copy = function (oldPath, newPath, callback) {
-    var readStream = fs.createReadStream(oldPath);
-    var writeStream = fs.createWriteStream(newPath);
-
-    readStream.on('error', callback);
-    writeStream.on('error', callback);
-
-    readStream.on('close', function () {
-        fs.unlink(oldPath, callback);
-    });
-
-    readStream.pipe(writeStream);
+    let parentDir = path.dirname(newPath);
+    if (!fs.existsSync(parentDir)) {
+        fs.mkdirSync(parentDir, { recursive: true });
+    }
+    fs.copyFileSync(oldPath, newPath);
 };
 
 exports.Move = function (oldPath, newPath, callback) {

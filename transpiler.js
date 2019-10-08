@@ -1,13 +1,22 @@
 const fileOps = require("./ops/fileops");
 const sass = require('node-sass');
-
-exports.Start = function (content, layout) {
+const authors = require('./authors').default;
+/*
+ * Start Transpiler Pipeline
+ */
+exports.Start = function (content, layout, relativePath) {
     this._init = require('markdown-it')();
     this._meta = {};
     this._content = content;
     this._layout = layout || `{{__CONTENT__}}`;
+    if (!!relativePath)
+        this._meta["relativePath"] = relativePath.replace(/\\/g, "/").replace(/\.md$/gmi, "");
     return this;
 }
+
+/*
+ * Meta Transpiler Pipeline
+ */
 exports.Meta = function () {
 
     try {
@@ -77,6 +86,9 @@ exports.Meta = function () {
     return this;
 }
 
+/*
+ * Script Transpiler Pipeline
+ */
 exports.Script = function (scriptName) {
     try {
         const scriptContent = fileOps.ReadFile(scriptName);
@@ -88,6 +100,9 @@ exports.Script = function (scriptName) {
     return this;
 }
 
+/*
+ * Style Transpiler Pipeline
+ */
 exports.Style = function (styleName) {
     try {
         const data = fileOps.ReadFile(styleName);
@@ -105,11 +120,24 @@ exports.Style = function (styleName) {
     return this;
 }
 
+/*
+ * End Transpiler Pipeline
+ */
 exports.Export = function (destination) {
     try {
-        // Merge
+        // Merge Layout
         this._content = this._layout.replace("{{__CONTENT__}}", this._content);
-        // Cleanup
+        // Static Tags
+        for (let _metaKey in this._meta) {
+            const metaRgx = new RegExp("\\$\\{_" + _metaKey + "_\\}", "g");
+            if (_metaKey === "relativePath") {
+                if (metaRgx.test(this._content)) {
+                    const match = /\$\{_relativePath_\}/g.exec(this._content);
+                }
+            }
+            this._content = this._content.replace(metaRgx, this._meta[_metaKey]);
+        }
+        // Cleanup Unused Components
         this._content = this._content.replace(/{{_+[A-Z]+_+}}/g, "");
         fileOps.WriteFile(destination, this._content);
     } catch (e) {
@@ -118,18 +146,64 @@ exports.Export = function (destination) {
     return this;
 }
 
-
+/*
+ * Markdown Transpiler Pipeline
+ */
 exports.MdToHtml = function () {
     try {
         // Convert to HTML
         this._content = this._init.render(this._content);
-        // Embed GISTS
+        // CODEPEN
         this._content = this._content.replace(
-            /(https?:\/\/)?gist\.github\.com\/(.*?)\/([\w-]+)(\.js)?(.*)?/gi,
-            `<script src="https://gist.github.com/$2/$3.js"></script>`);
+            /(\<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?codepen\.io\/(\w+?)\/embed\/([\w-_]+)?((\?)?(((([\w-_]+)=([\w,]+)?)(\&(amp;)?))*(([\w-_]+)=([\w,]+)?)))?([\"\']>)?((.*?)<\/a>)?/gi,
+            `<iframe class='iwb-embed' height='500' style='width: 100%;' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' 
+            title='$19' src='https://codepen.io/$4/embed/$4$5'>
+            See the Pen <a href='https://codepen.io/$3/pen/$4'>$19</a> by $3
+            (<a href='https://codepen.io/$3'>@$3</a>)
+            on <a href='https://codepen.io'>CodePen</a></iframe>`
+        );
+        // FIDDLE
+        this._content = this._content.replace(
+            /(\<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?jsfiddle\.net\/(.*?)?([\"\']>)((.*?)<\/a>)?/gi,
+            `<iframe class='iwb-embed' border=1 height='500' style='width: 100%;' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' src="http://jsfiddle.net/$3">
+            See the <a href='http://jsfiddle.net/$3'>Fiddle</a></iframe>`);
+        // GISTS
+        this._content = this._content.replace(
+            /(<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?gist\.github\.com\/(.*?)\/([\w-]+)(\.js)?(.*)?([\"\']>)(.*?)<\/a>/gi,
+            `<script src="https://gist.github.com/$3/$4.js"></script>`);
+
+        // HLJS
         this._content = this._content.replace(
             /(?<=class=")language-(\w+)/gi,
             `$1`);
+        // Embed Separator Tab
+        if (/(<h1|2|3|4)(>.*?)(<\/h(1|2|3|4)\>)/i.test(this._content)) {
+            this._content = this._content.replace(
+                /(<h1|2|3|4)(>.*?)(<\/h(1|2|3|4)\>)/i,
+                `$1 class="title" $2$3 <div class="separator"></div>`
+            );
+        }
+        // Alert Style
+        if(/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO|ALERT|NOTICE|ERROR|WARNING)\s*:/ig.test(this._content)) {
+            if(/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO)\s*:/ig.test(this._content)) {
+                this._content = this._content.replace(
+                    /(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO)\s*:/ig,
+                    `$1 class="alert-info"$2$3:`
+                );
+            }
+            if(/(<blockquote)(>\s*<p>)\s*(ALERT|ERROR|NOTICE)\s*:/ig.test(this._content)) {
+                this._content = this._content.replace(
+                    /(<blockquote)(>\s*<p>)\s*(ALERT|ERROR|NOTICE)\s*:/ig,
+                    `$1 class="alert-err"$2$3:`
+                );
+            }
+            if(/(<blockquote)(>\s*<p>)\s*(WARNING)\s*:/ig.test(this._content)) {
+                this._content = this._content.replace(
+                    /(<blockquote)(>\s*<p>)\s*(WARNING)\s*:/ig,
+                    `$1 class="alert-warn"$2$3:`
+                );
+            }
+        }
     }
     catch (e) {
         console.error(e);

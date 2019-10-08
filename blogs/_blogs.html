@@ -3,19 +3,60 @@
 
 <head>
     {{__META__}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">F
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/ascetic.min.css" />
     {{__STYLE__}}
 </head>
 
 <body>
-    <div class="header">
+    <div class="header">NILAY VISHWAKARMA'S BLOG
+        <span class="right">
+            <span onclick="onFeedback();"><svg fill="#efefef" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M14 1H2c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1h2v3.5L7.5 11H14c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 9H7l-2 2v-2H2V2h12v8z" />
+                </svg> FEEDBACK</span>
+            <span onclick="onEdit('${_relativePath_}');"><svg fill="#efefef" xmlns="http://www.w3.org/2000/svg"
+                    width="14" height="16" viewBox="0 0 14 16">
+                    <path fill-rule="evenodd"
+                        d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z" />
+                </svg> EDIT</span>
+            <span>
+                <span class="dropdown-toggle" data-toggle="dropdown">
+                    <svg fill="#efefef" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M6 17c2.269-9.881 11-11.667 11-11.667v-3.333l7 6.637-7 6.696v-3.333s-6.17-.171-11 5zm12 .145v2.855h-16v-12h6.598c.768-.787 1.561-1.449 2.339-2h-10.937v16h20v-6.769l-2 1.914z" />
+                    </svg> SHARE</span>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item" onclick="onLinkedIn('${_relativePath_}')">
+                        <svg fill="#0077B5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                        </svg> via LinkedIn</div>
+                    <div class="dropdown-item" onclick="onTwitter('${_relativePath_}')">
+                        <svg fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                        </svg> via Twitter</div>
+                    <div class="dropdown-item" onclick="onFacebook('${_relativePath_}')">
+                        <svg fill="#3C5A99" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                        </svg> via Facebook</div>
+                </div>
+            </span>
+        </span>
     </div>
     <div class="container">
-        <div class="main">
+        <div class="main" id="container">
             {{__CONTENT__}}
         </div>
     </div>
+    <div class="footer"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/cs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/javascript.min.js"></script>
@@ -23,23 +64,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/json.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/cpp.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@4"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.classList"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://github.com/devongovett/pdfkit/releases/download/v0.6.2/pdfkit.js"></script>
+    <script src="https://github.com/devongovett/blob-stream/releases/download/v0.1.2/blob-stream-v0.1.2.js"></script>
+
     <script>
         if (!SVGElement.prototype.contains) {
             SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
         }
         window.onload = function (ev) {
-            // hljs.initHighlightingOnLoad();
-            hljs.initHighlighting.called = false;
-            hljs.initHighlighting();
+            try {
+                hljs.initHighlighting.called = false;
+                hljs.initHighlighting();
+            } catch (e) {
+                console.warn(e);
+                hljs.initHighlightingOnLoad();
+            }
             const pres = document.getElementsByTagName("code");
             for (let i = 0; i < pres.length; i++) {
                 if (pres[i].parentElement.tagName.toLowerCase() === "pre") {
                     var el = document.createElement("button");
-                    el.className = "btn";
+                    el.className = "btn-tippy";
                     el.innerHTML = '<i class="fa fa-clipboard"></i>';
                     el.setAttribute("data-clipboard-target", "#_code" + i);
                     el.setAttribute("data-clipboard-action", "copy");
@@ -53,7 +103,7 @@
                 as[i].setAttribute("data-tippy-content", as[i]["href"]);
             }
             // TIPPY
-            const instances = tippy(".btn", {
+            const instances = tippy(".btn-tippy", {
                 content: "Copied to Clipboard",
                 duration: 1000,
                 arrow: true,
@@ -62,8 +112,27 @@
                 trigger: "click",
                 theme: 'light'
             });
-            var clipboard = new ClipboardJS(".btn");
+            var clipboard = new ClipboardJS(".btn-tippy");
         };
+        function onFeedback() {
+            window.open("https://github.com/iwannabebot/iwannabebot.github.io/issues/new", "_blank");
+        }
+        function onEdit(relativePath) {
+            window.open(`https://github.com/iwannabebot/iwannabebot.github.io/edit/source-nxt/${relativePath}.md`, "_blank");
+        }
+        function onLinkedIn(relativePath) {
+            let shareLink = encodeURI(`https://www.nilayvishwakarma.com/${relativePath}.html`);
+            window.open("https://www.linkedin.com/sharing/share-offsite/?url=" + shareLink, "_blank");
+        }
+        function onTwitter(relativePath) {
+            var shareLink = encodeURI(`https://www.nilayvishwakarma.com/${relativePath}.html`);
+            window.open("http://twitter.com/share?url=" + shareLink, "_blank");
+        }
+        function onFacebook(relativePath) {
+            let shareLink = encodeURI(`https://www.nilayvishwakarma.com/${relativePath}.html`);
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + shareLink, "_blank");
+        }
+        
     </script>
     {{__SCRIPT__}}
 </body>

@@ -1,6 +1,8 @@
-$green1: #008f68;
+$green1: rgba(0,143,104,0.8);
 $green2: #6DB65B;
 $green3: #4AAE9B;
+$green4: rgba(0,143,104,0.1);
+$green5: rgb(6, 31, 24);
 
 $yellow1: #FAE042;
 $yellow2: #EFBB35;
@@ -15,3 +17,15 @@ $black: black;
 $black1: #282927;
 $black2: #464646;
 $black3: #232323;
+
+$info-background : rgba(136, 243, 193, 0.8);
+$info-color : rgba(11, 53, 42, 0.8);
+$info-border : rgba(18, 88, 56, 0.959);
+
+$err-background : rgba(236, 159, 159, 0.733);
+$err-color : rgba(99, 12, 12, 0.8);
+$err-border : rgba(255, 51, 51, 0.897);
+
+$warn-background : rgba(221, 174, 73, 0.733);
+$warn-color : rgba(247, 99, 0, 0.856);
+$warn-border : rgba(255, 115, 0, 0.8);

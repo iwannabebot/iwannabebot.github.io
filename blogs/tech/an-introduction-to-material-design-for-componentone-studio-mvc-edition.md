@@ -22,15 +22,12 @@ Google announced Material and it’s specification in mid-2014, defining Materia
 [ComponentOne MVC](https://www.grapecity.com/en/aspnet-mvc) controls lets you add Material design look and feel by using [Material Design Lite](https://getmdl.io/started/index.html#download). It does not rely on any JS framework. It only takes two steps to add material support in your application. Our material theme should work in all evergreen browsers alike, with full support in Chrome for Android and Mobile Safari. For older browsers like IE9, we degrade to CSS only.
 There are two ways to use our inbuilt Material themes: with HTML/tag helpers and with our theme builder.
 
-https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc#file-materialformat-txt
+[My Gist](https://gist.github.com/iwannabebot/63bcc19a3a33b241f502a516edee56bc)
 
 ```js
 console.log(This is an example code);
 ```
 
-```js
-var i = 0;
-```
 
 ```cs
 public class TestClass : IDisposable {

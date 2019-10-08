@@ -13,7 +13,7 @@ for (let _index = 0; args.view && _index < args.view.length; _index++) {
     if (fileOps.IsFile(absPath)) {
         // Root level files
         const file = fileOps.ReadFile(__dirname, folder);
-        const transpiler = _transpiler.Start(file, "")
+        const transpiler = _transpiler.Start(file, "", folder)
         transpiler.Meta();
         try {
             const scriptName = fileOps.MergePath(__dirname, args.script, "index.js");
@@ -51,7 +51,7 @@ for (let _index = 0; args.view && _index < args.view.length; _index++) {
                     // Get content
                     let content = fileOps.ReadFile(__dirname, file);
                     // Initialize transpiler
-                    const transpiler = _transpiler.Start(content, layout);
+                    const transpiler = _transpiler.Start(content, layout, file);
                     // Load Meta
                     _transpiler.Meta();
                     // Convert MD to HTML
@@ -85,8 +85,8 @@ for (let _index = 0; args.view && _index < args.view.length; _index++) {
                     // Export to html
                     transpiler.Export(name.replace(/(?<=\.)(md|html|htm)$/igm, "html"));
 
-                } else if (file.endsWith(".md") || file.endsWith(".html") || file.endsWith(".htm")) {
-                    fileOps.Copy(file, name);
+                } else {
+                    fileOps.Copy(fileOps.MergePath(__dirname, file), name);
                 }
             }
         }

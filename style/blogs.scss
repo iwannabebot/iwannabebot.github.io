@@ -2,33 +2,38 @@
 @import "highlightjs";
 @import "tippy";
 
-img, canvas {
-  max-width: 100%;
-  max-height: 500px;
-  display: block;
-  margin: 40px auto 40px;
-}
-code {
-  font-family: $font-code;
-}
-
 body {
   .header {
     z-index: 1000;
-    position: fixed;
+    position: sticky;
     top: 0px;
     width: 100%;
     height: 36px;
-    padding: 4px 16px;
-    color: $green1;
+    padding: 6px 16px;
+    color: #efefef;
     background-color: $green1;
-    opacity: 0.9;
+    opacity: 0.8;
+    box-shadow: 0px 2px 2px 0px $green1;
     a {
       margin-right: 30px;
       color: $white2;
     }
     .right {
       float: right;
+      margin-top: 40px;
+      color: $green1;
+    }
+    span {
+      cursor: pointer;
+      padding: 0px 5px;
+    }
+    svg {
+      fill: $green1;
+      width: 18px;
+      margin: 0px 5px 5px;
+    }
+    .dropdown-toggle::after {
+      display: none !important;
     }
   }
   .sub-header {
@@ -51,13 +56,29 @@ body {
     }
   }
   .container {
-    max-width: 780px;
+    max-width: 980px;
     width: 100%;
-    margin: 80px auto 10px;
+    margin: 40px auto 10px;
     color: $black1;
-    .footer {
-      margin: 20px 30px 20px 30px;
-      color: $black3;
+    .title{
+      text-align: center;
+      margin: 40px 80px 40px;
+    }
+    .separator{
+      margin: 0px 0px 30px;
+      font-size: 22px;
+      font-weight: 300;
+      font-family: $font-primary;
+      border-top: 1px solid $yellow2;
+      border-bottom: 1px solid $yellow2;
+      padding: 4px 0px;
+      text-align: right;
+      span {
+        margin: 0px 5px;
+      }
+      .toolbar{
+        
+      }
     }
     blockquote {
       --x-height-multiplier: 0.375;
@@ -69,7 +90,7 @@ body {
       line-height: 1.38;
       letter-spacing: -0.003em;
       font-style: italic;
-      background-color: rgba($black2,0.1);
+      background-color: rgba(30, 199, 30, 0.1);
       ul,
       ol {
         margin-left: 70px;
@@ -81,6 +102,21 @@ body {
         margin-left: 10px;
       }
     }
+    .alert-info {
+      background-color: $info-background;
+      color: $info-color;
+      border-left-color: $info-border;
+    }
+    .alert-err {
+      background-color: $err-background;
+      color: $err-color;
+      border-left-color: $err-border;
+    }
+    .alert-warn {
+      background-color: $warn-background;
+      color: $warn-color;
+      border-left-color: $warn-border;
+    }
     hr{
       width: 15%;
       border: 0;
@@ -91,10 +127,12 @@ body {
       color: $green3;
       text-decoration: dashed;
     }
-    a,
-    a:link {
+    a, a:link {
       transition: all 0.2s;
       color: $green3;
+    }
+    .iwb-embed {
+      box-shadow: 0px 2px 15px 2px #eee;
     }
     p {
       margin: 30px 20px;
@@ -122,10 +160,37 @@ body {
           cursor: pointer;
         }
       }
+      img, canvas {
+        max-width: 100%;
+        max-height: 500px;
+        display: block;
+        margin: 40px auto 40px;
+        box-shadow: 0px 2px 15px 2px #eee;
+      }
+    }
+    p::-moz-selection { /* Code for Firefox */
+      color: $green5;
+      background: $green4;
+    }
+    ::selection {
+      color: $green5;
+      background: $green4;
+    }
+    .gist {
+      margin: 30px 20px;
+      box-shadow: 0px 2px 15px 2px #eee;
+    }
+    .gist-file {
+      border-radius: 0px !important;
+    }
+    code {
+      font-family: $font-code;
     }
     pre {
       position: relative;
-      .btn {
+      margin: 30px 20px;
+      box-shadow: 0px 2px 15px 2px #eee;
+      .btn-tippy {
         padding: 2px 6px;
         position: absolute;
         right: 4px;
@@ -144,5 +209,9 @@ body {
         outline: none;
       }
     }
+  }
+  .footer {
+    margin: 20px 30px 20px 30px;
+    color: $black3;
   }
 }
