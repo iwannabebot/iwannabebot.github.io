@@ -2,24 +2,15 @@
 title: An Introduction to Material Design for ComponentOne Studio — MVC Edition
 description: Material design is a versatile set of guidelines that support the best practices of user interface design.
 date: 09/19/2019
-image: ../../assets/c1-material.png
+image: assets/c1-material.png
 style: blogs
 ---
 
 # An Introduction to Material Design for ComponentOne Studio — MVC Edition
 
-> IMPORTANT:
-> THIS IS A BLOCKQUOTE
-
-> THIS IS NEW BLOCKQUOTE
-> THIS IS A BLOCKQUOTE
-
 > NOTICE:
 > THIS IS A BLOCKQUOTE
 
-
-> WARNING:
-> THIS IS A BLOCKQUOTE
 ## BANNER
 
 ![banner](../../assets/c1-material.png)

@@ -28,10 +28,14 @@ exports.Meta = function () {
         if (!!metacontent) {
             let i = 0;
             do {
-                meta$ = xrgx.exec(metacontent[0]);
-                if (!!meta$) {
-                    i++;
-                    _meta[meta$[1]] = meta$[2];
+                try {
+                    meta$ = xrgx.exec(metacontent[0]);
+                    if (!!meta$) {
+                        i++;
+                        _meta[meta$[1]] = meta$[2];
+                    }
+                } catch{
+                    meta$ = null;
                 }
             } while (!!meta$);
             _meta["length"] = i;
@@ -39,29 +43,48 @@ exports.Meta = function () {
         }
         this._content = this._content.replace(/---(\r\n|\n)(^(.+?)\s*:\s*(.+?)$(\r\n|\n))+---/img, "");
         let meta = "";
+
+        // Univeral Meta
         meta += `<meta charset="UTF-8">\n`;
         meta += `<meta name="viewport" content="width=device-width, initial-scale=1.0">\n`;
         meta += `<meta http-equiv="X-UA-Compatible" content="ie=edge">\n`;
         meta += `<meta name="twitter:card" content="summary" />\n`;
-
-        for (let key in this._meta) {
-            meta += `<meta property="og:${key}" content="${this._meta[key]}">\n`;
-            switch (key) {
-                case "name": {
-                    meta += `<meta property="og:site_${key}" content="${this._meta[key]}">\n`;
-                    break;
-                }
-            }
-        }
-
-        for (let key in this._meta) {
-            meta += `<meta property="${key}" content="${this._meta[key]}">\n`;
-        }
-
+        meta += `<meta property="og:site_name" content="https://www.nilayvishwakarma.com">\n`;
+        meta += `<meta name="twitter:site" content="https://www.nilayvishwakarma.com" />\n`
+        // Embed Meta
         for (let key in this._meta) {
             switch (key) {
                 case "title": {
                     meta += `<title>${this._meta[key]}</title>\n`;
+                    break;
+                }
+                case "image": {
+                    meta += `<meta property="${key}" content="${this._meta[key]}">\n`;
+                    break;
+                }
+                default: {
+                    meta += `<meta property="${key}" content="${this._meta[key]}">\n`;
+                }
+            }
+        }
+        
+        // Open Graph Meta
+        for (let key in this._meta) {
+            switch (key) {
+                case "image": {
+                    meta += `<meta property="og:${key}" content="${this._meta[key]}">\n`;
+                    break;
+                }
+                default: {
+                    meta += `<meta property="og:${key}" content="${this._meta[key]}">\n`;
+                }
+            }
+        }
+
+        // Twitter Meta
+        for (let key in this._meta) {
+            switch (key) {
+                case "title": {
                     break;
                 }
                 case "description": {
@@ -69,9 +92,6 @@ exports.Meta = function () {
                 }
                 case "image": {
                     break;
-                }
-                case "site": {
-                    meta += `<meta name="twitter:site" content="${this._meta[key]}" />\n`;
                 }
                 case "author": {
                     meta += `<meta property="twitter:creator" content="${this._meta[key]}">\n`;
@@ -153,9 +173,10 @@ exports.MdToHtml = function () {
     try {
         // Convert to HTML
         this._content = this._init.render(this._content);
+        
         // CODEPEN
         this._content = this._content.replace(
-            /(\<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?codepen\.io\/(\w+?)\/embed\/([\w-_]+)?((\?)?(((([\w-_]+)=([\w,]+)?)(\&(amp;)?))*(([\w-_]+)=([\w,]+)?)))?([\"\']>)?((.*?)<\/a>)?/gi,
+            /(\<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?codepen\.io\/(\w+?)\/\w+\/([\w-_]+)?((\?)?(((([\w-_]+)=([\w,]+)?)(\&(amp;)?))*(([\w-_]+)=([\w,]+)?)))?([\"\']>)?((.*?)<\/a>)?/gi,
             `<iframe class='iwb-embed' height='500' style='width: 100%;' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' 
             title='$19' src='https://codepen.io/$4/embed/$4$5'>
             See the Pen <a href='https://codepen.io/$3/pen/$4'>$19</a> by $3
@@ -183,21 +204,23 @@ exports.MdToHtml = function () {
                 `$1 class="title" $2$3 <div class="separator"></div>`
             );
         }
+        // Convert all anchor tags to target new tab
+        this._content = this._content.replace(/<a\s+/gi, "<a target='_blank'")
         // Alert Style
-        if(/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO|ALERT|NOTICE|ERROR|WARNING)\s*:/ig.test(this._content)) {
-            if(/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO)\s*:/ig.test(this._content)) {
+        if (/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO|ALERT|NOTICE|ERROR|WARNING)\s*:/ig.test(this._content)) {
+            if (/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO)\s*:/ig.test(this._content)) {
                 this._content = this._content.replace(
                     /(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO)\s*:/ig,
                     `$1 class="alert-info"$2$3:`
                 );
             }
-            if(/(<blockquote)(>\s*<p>)\s*(ALERT|ERROR|NOTICE)\s*:/ig.test(this._content)) {
+            if (/(<blockquote)(>\s*<p>)\s*(ALERT|ERROR|NOTICE)\s*:/ig.test(this._content)) {
                 this._content = this._content.replace(
                     /(<blockquote)(>\s*<p>)\s*(ALERT|ERROR|NOTICE)\s*:/ig,
                     `$1 class="alert-err"$2$3:`
                 );
             }
-            if(/(<blockquote)(>\s*<p>)\s*(WARNING)\s*:/ig.test(this._content)) {
+            if (/(<blockquote)(>\s*<p>)\s*(WARNING)\s*:/ig.test(this._content)) {
                 this._content = this._content.replace(
                     /(<blockquote)(>\s*<p>)\s*(WARNING)\s*:/ig,
                     `$1 class="alert-warn"$2$3:`
