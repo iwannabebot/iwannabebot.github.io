@@ -27,8 +27,10 @@ body {
       cursor: pointer;
       padding: 0px 5px;
     }
-    svg {
+    .icon {
       fill: $green1;
+    }
+    svg {
       width: 18px;
       margin: 0px 5px 5px;
     }
