@@ -7,7 +7,7 @@
         "dist"
     ],
     "verbose": true,
-    "exec": "node build.js --output='dist' --view='index.html;assets;blogs;tools;easter' --style='style' --script='script'",
+    "exec": "node build.js --output='dist' --view='robo.txt;CNAME;index.html;assets;blogs;tools;easter' --style='style' --script='script'",
     "execMap": {
         "js": "node --harmony"
     },

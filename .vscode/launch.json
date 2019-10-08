@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/build.js",
             "args": [
                 "--output='dist'",
-                "--view='index.html;assets;blogs;tools;easter'",
+                "--view='robo.txt;CNAME;index.html;assets;blogs;tools;easter'",
                 "--style='style'",
                 "--script='script'"
             ]

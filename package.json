@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "dev": "concurrently \"nodemon\" \"live-server dist\"",
-    "build": "node build.js --output='dist' --view='index.html;assets;blogs;tools;easter' --style='style' --script='script'",
+    "build": "node build.js --output='dist' --view='robo.txt;CNAME;index.html;assets;blogs;tools;easter' --style='style' --script='script'",
     "deploy": "gh-pages -d dist"
   },
   "private": true,
