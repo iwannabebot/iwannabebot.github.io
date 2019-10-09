@@ -18,12 +18,14 @@ body {
     }
     .right {
       float: right;
+    }
+    .options{
       margin-top: 40px;
       color: $green1;
     }
     span {
       cursor: pointer;
-      padding: 0px 5px;
+      padding: 0px 10px;
     }
     .icon {
       fill: $green1;
@@ -60,23 +62,6 @@ body {
     width: 100%;
     margin: 40px auto 10px;
     color: $black1;
-    .title{
-      text-align: center;
-      margin: 40px 80px 40px;
-    }
-    .separator{
-      margin: 0px 0px 30px;
-      font-size: 22px;
-      font-weight: 300;
-      font-family: $font-primary;
-      border-top: 1px solid $yellow2;
-      border-bottom: 1px solid $yellow2;
-      padding: 4px 0px;
-      text-align: right;
-      span {
-        margin: 0px 5px;
-      }
-    }
     .alert-info {
       background-color: $info-background;
       color: $info-color;
