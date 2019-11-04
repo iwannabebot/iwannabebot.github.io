@@ -1,6 +1,4 @@
 @import "base";
-@import "highlightjs";
-@import "tippy";
 
 body {
   .header {
@@ -57,163 +55,149 @@ body {
       float: right;
     }
   }
-  .container {
-    max-width: 980px;
-    width: 100%;
-    margin: 40px auto 10px;
-    color: $black1;
-    .title{
-      text-align: center;
-      margin: 40px 80px 40px;
+  .article {
+    margin-left: 300px;
+    .sidebar {
+      float: left;
+      width: 300px;
+      position: fixed;
+      background-color: #d5d5d5;
     }
-    .separator{
-      margin: 0px 0px 30px;
-      font-size: 22px;
-      font-weight: 300;
-      font-family: $font-primary;
-      border-top: 1px solid $yellow2;
-      border-bottom: 1px solid $yellow2;
-      padding: 4px 0px;
-      text-align: right;
-      span {
-        margin: 0px 5px;
+    .container {
+      max-width: 980px;
+      min-height: calc(100vh - 122px);
+      width: 100%;
+      margin: 40px auto 10px;
+      color: $black1;
+      .title{
+        text-align: center;
+        margin: 40px 80px 40px;
       }
-      .toolbar{
-        
+      .separator{
+        margin: 0px 0px 10px;
+        font-size: 22px;
+        font-weight: 300;
+        font-family: $font-primary;
+        border-top: 1px solid $yellow2;
+        border-bottom: 1px solid $yellow2;
+        span {
+          margin: 0px 5px;
+        }
+        .toolbar{
+          
+        }
       }
-    }
-    blockquote {
-      --x-height-multiplier: 0.375;
-      --baseline-multiplier: 0.17;
-      border-left: 3px solid $black2;
-      padding: 10px;
-      margin: 20px 30px;
-      color: $black2;
-      line-height: 1.38;
-      letter-spacing: -0.003em;
-      font-style: italic;
-      background-color: rgba(30, 199, 30, 0.1);
-      ul,
-      ol {
-        margin-left: 70px;
+      blockquote {
+        --x-height-multiplier: 0.375;
+        --baseline-multiplier: 0.17;
+        border-left: 3px solid $black2;
+        padding: 10px;
+        margin: 20px 30px;
+        color: $black2;
+        line-height: 1.38;
+        letter-spacing: -0.003em;
+        font-style: italic;
+        background-color: rgba(30, 199, 30, 0.1);
+        ul,
+        ol {
+          margin-left: 70px;
+        }
+        p {
+          padding: 5px 5px 10px 10px !important;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: 10px;
+        }
       }
-      p {
-        padding: 5px 5px 10px 10px !important;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: 10px;
+      .alert-info {
+        background-color: $info-background;
+        color: $info-color;
+        border-left-color: $info-border;
       }
-    }
-    .alert-info {
-      background-color: $info-background;
-      color: $info-color;
-      border-left-color: $info-border;
-    }
-    .alert-err {
-      background-color: $err-background;
-      color: $err-color;
-      border-left-color: $err-border;
-    }
-    .alert-warn {
-      background-color: $warn-background;
-      color: $warn-color;
-      border-left-color: $warn-border;
-    }
-    hr{
-      width: 15%;
-      border: 0;
-      border-top: 4px solid $black2;
-      margin: 5em auto 5em;
-    }
-    a {
-      color: $green3;
-      text-decoration: dashed;
-    }
-    a, a:link {
-      transition: all 0.2s;
-      color: $green3;
-    }
-    .iwb-embed {
-      box-shadow: 0px 2px 15px 2px #eee;
-    }
-    p {
-      margin: 30px 20px;
-      text-align: justify;
-      text-justify: inter-word;
+      .alert-err {
+        background-color: $err-background;
+        color: $err-color;
+        border-left-color: $err-border;
+      }
+      .alert-warn {
+        background-color: $warn-background;
+        color: $warn-color;
+        border-left-color: $warn-border;
+      }
+      hr{
+        width: 15%;
+        border: 0;
+        border-top: 4px solid $black2;
+        margin: 5em auto 5em;
+      }
       a {
         color: $green3;
         text-decoration: dashed;
-        color: $yellow1;
       }
-      a,
-      a:link {
+      a, a:link {
         transition: all 0.2s;
-        color: $yellow2;
+        color: $green3;
       }
-      em {
-        padding: 5px 7px 0;
-        white-space: pre-wrap;
-        background-color: rgba($yellow1, 0.2);
-        border-bottom: 2px solid $yellow3;
-        font-style: normal;
-        border-radius: 4px;
-        a {
-          text-decoration: none;
-          cursor: pointer;
-        }
-      }
-      img, canvas {
-        max-width: 100%;
-        max-height: 500px;
-        display: block;
-        margin: 40px auto 40px;
+      .iwb-embed {
         box-shadow: 0px 2px 15px 2px #eee;
       }
-    }
-    p::-moz-selection { /* Code for Firefox */
-      color: $green5;
-      background: $green4;
-    }
-    ::selection {
-      color: $green5;
-      background: $green4;
-    }
-    .gist {
-      margin: 30px 20px;
-      box-shadow: 0px 2px 15px 2px #eee;
-    }
-    .gist-file {
-      border-radius: 0px !important;
-    }
-    code {
-      font-family: $font-code;
-    }
-    pre {
-      position: relative;
-      margin: 30px 20px;
-      box-shadow: 0px 2px 15px 2px #eee;
-      .btn-tippy {
-        padding: 2px 6px;
-        position: absolute;
-        right: 4px;
-        top: 4px;
-        font-size: 13px;
-        font-weight: 700;
-        line-height: 20px;
-        color: #333;
-        white-space: nowrap;
-        vertical-align: middle;
-        cursor: pointer;
-        background-color: #eee;
-        background-image: linear-gradient(#fcfcfc, #eee);
-        border: 1px solid #d5d5d5;
-        border-radius: 3px;
-        outline: none;
+      p {
+        margin: 30px 20px;
+        text-align: justify;
+        text-justify: inter-word;
+        a {
+          color: $green3;
+          text-decoration: dashed;
+          color: $yellow1;
+        }
+        a,
+        a:link {
+          transition: all 0.2s;
+          color: $yellow2;
+        }
+        em {
+          padding: 5px 7px 0;
+          white-space: pre-wrap;
+          background-color: rgba($yellow1, 0.2);
+          border-bottom: 2px solid $yellow3;
+          font-style: normal;
+          border-radius: 4px;
+          a {
+            text-decoration: none;
+            cursor: pointer;
+          }
+        }
+        img, canvas {
+          max-width: 100%;
+          max-height: 500px;
+          display: block;
+          margin: 40px auto 40px;
+          box-shadow: 0px 2px 15px 2px #eee;
+        }
+      }
+      p::-moz-selection { /* Code for Firefox */
+        color: $green5;
+        background: $green4;
+      }
+      ::selection {
+        color: $green5;
+        background: $green4;
+      }
+      .gist {
+        margin: 30px 20px;
+        box-shadow: 0px 2px 15px 2px #eee;
+        font-family: $font-code;
+      }
+      .gist-file {
+        border-radius: 0px !important;
       }
     }
   }
   .footer {
-    margin: 20px 30px 20px 30px;
-    color: $black3;
+    background-color: #efefef;
+    color: $green1;
+    opacity: 0.8;
+    padding: 6px 16px;
+    box-shadow: 0px -2px 2px 0px #efefef;
   }
 }

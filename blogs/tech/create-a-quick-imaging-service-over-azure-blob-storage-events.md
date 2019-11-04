@@ -1,7 +1,6 @@
 ---
 title: How to Create an Imaging Service over Azure Blob Storage Events
 description: This article is part of an ongoing series involving GrapeCity Documents and Azure Cloud Services.
-date: 09/19/2019
 image: https://gccontent.blob.core.windows.net/gccontent/blogs/gcdocuments/20190218-create-a-quick-imaging-service-over-azure-blob-storage-events/hero2.jpg
 style: blogs
 ---

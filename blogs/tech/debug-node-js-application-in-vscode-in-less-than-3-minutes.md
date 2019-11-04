@@ -1,7 +1,6 @@
 ---
 title: Debug Node.js application in VSCode!
 description: Debug Node.js application in VSCode in 3 minutes or less by Nilay Vishwakarma
-date: 09/19/2019
 image: https://miro.medium.com/max/1200/1*BthNZyR5Mv49JzRda4QjeQ.png
 style: blogs
 ---

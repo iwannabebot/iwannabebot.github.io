@@ -1,7 +1,6 @@
 ---
 title: How to Add Security in C1 Web API
 description: The GrapeCity ComponentOne Studio Web API (C1WebApi) provides a set of RESTful HTTP services layered over ASP.NET and ASP.NET Core Web API. It supports security from its feature set, allowing the flexibility of an out-of-the-box customization.
-date: 09/19/2019
 image: https://grapecitycontentcdn.azureedge.net/blogs/componentone/20180615-secure-c1webapi-with-custom-oauth2-part1/header.png
 style: blogs
 ---

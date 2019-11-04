@@ -1,7 +1,6 @@
 ---
 title: How to create a thumbnail image on AWS S3 using an Imaging API
 description: With the ComponentOne scaffolder, you can do a lot more than just traditional data binding. Visual Studio has an inbuilt scaffolder wizard, but it is limited to generate views with only basic HTML support.
-date: 09/19/2019
 image: https://gccontent.blob.core.windows.net/gccontent/blogs/gcdocuments/20190121-create-a-thumbnail-image-using-documents-for-imaging/image1.png
 style: blogs
 ---

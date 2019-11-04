@@ -1,7 +1,6 @@
 ---
 title: Configure Bearer middleware for SwaggerUI in ASP.NET Core 2.0
 description: Swagger UI allows anyone - be it your development team or your end consumers - to visualize and interact with the API's resources without…
-date: 09/19/2019
 image: assets/bearer-swaggerui.png
 style: blogs
 ---
@@ -12,7 +11,7 @@ style: blogs
 
 Swagger UI allows anyone - be it your development team or your end consumers - to visualize and interact with the API's resources without having any of the implementation logic in place. It's automatically generated from your Swagger specification, with the visual documentation making it easy for back-end implementation and client-side consumption.
 
-## Method #1:
+### Method #1:
 
 If you are using an OAuth2/OpenID compliant middleware with the implicit flow, you can configure the security definition directly in your Startup:
 
@@ -20,7 +19,7 @@ If you are using an OAuth2/OpenID compliant middleware with the implicit flow, y
 
 This is appropriate when your OAuth2 server has UI which you can redirect from.
 
-## Method #2:
+### Method #2:
 
 If method #1 is not appropriate for you, but you do have access token then you can use the following code:
 

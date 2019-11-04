@@ -1,7 +1,6 @@
 ---
 title: Create MVC Apps Faster with Control Wizard
 description: With the ComponentOne scaffolder, you can do a lot more than just traditional data binding. Visual Studio has an inbuilt scaffolder wizard, but it is limited to generate views with only basic HTML support.
-date: 09/19/2019
 image: https://gccontent.blob.core.windows.net/gccontent/blogs/componentone/20190325-create-mvc-apps-faster-with-control-wizard/1.jpg
 style: blogs
 ---

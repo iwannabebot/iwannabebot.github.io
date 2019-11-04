@@ -1,6 +1,8 @@
 @import "colors";
 @import "fonts";
 @import "reset";
+@import "highlightjs";
+@import "tippy";
 
 %h {
   font-family: $font-title;
@@ -35,20 +37,40 @@ h4 {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.58;
-  font-size: 20px;
+  line-height: 1.48;
+  font-size: 18px;
   font-weight: 300px;
   letter-spacing: 0.001em;
 }
 
-p{
+p, ul, li, ol{
   @extend %text;
   li, a, span {
     @extend %text;
   }
   a {
     padding: 0px 3px;
-    font-size: 21px;
+    font-size: 19px;
     text-decoration: dotted;
   }
+}
+
+.alert-info {
+  background-color: $info-background;
+  color: $info-color;
+  border-left-color: $info-border;
+}
+.alert-err {
+  background-color: $err-background;
+  color: $err-color;
+  border-left-color: $err-border;
+}
+.alert-warn {
+  background-color: $warn-background;
+  color: $warn-color;
+  border-left-color: $warn-border;
+}
+
+.invisible {
+    display: none;
 }

@@ -1,7 +1,6 @@
 ---
 title: Build an npm package with TypeScript in 10 minutes by Nilay Vishwakarma
 description: This article would help you in deciding, designing, and deploying your no-dependency npm package with TypeScript. Lately, I was writing a survey application which renders beautiful, validated forms…
-date: 09/19/2019
 image: https://cdn-images-1.medium.com/max/2560/1*6BB30K16pSoODx0fz0mI_w.png
 style: blogs
 ---

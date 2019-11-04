@@ -67,7 +67,7 @@ exports.Meta = function () {
                 }
             }
         }
-        
+
         // Open Graph Meta
         for (let key in this._meta) {
             switch (key) {
@@ -125,6 +125,12 @@ exports.Script = function (scriptName) {
  */
 exports.Style = function (styleName) {
     try {
+        if (this._meta.options) {
+            this._layout = this._layout.replace("{{__STYLE__}}", `<style>
+                .options { display:none; }
+            </style>
+            {{__STYLE__}}`);
+        }
         const data = fileOps.ReadFile(styleName);
         const styleContent = sass.renderSync({
             data: data,
@@ -173,15 +179,14 @@ exports.MdToHtml = function () {
     try {
         // Convert to HTML
         this._content = this._init.render(this._content);
-        
+
         // CODEPEN
         this._content = this._content.replace(
             /(\<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?codepen\.io\/(\w+?)\/\w+\/([\w-_]+)?((\?)?(((([\w-_]+)=([\w,]+)?)(\&(amp;)?))*(([\w-_]+)=([\w,]+)?)))?([\"\']>)?((.*?)<\/a>)?/gi,
             `<iframe class='iwb-embed' height='500' style='width: 100%;' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' 
             title='$19' src='https://codepen.io/$4/embed/$4$5'>
-            See the Pen <a href='https://codepen.io/$3/pen/$4'>$19</a> by $3
-            (<a href='https://codepen.io/$3'>@$3</a>)
-            on <a href='https://codepen.io'>CodePen</a></iframe>`
+            See the Pen <a href='https://codepen.io/$3/pen/$4'>$19</a> by $3 (<a href='https://codepen.io/$3'>@$3</a>) on <a href='https://codepen.io'>CodePen</a>
+            </iframe>`
         );
         // FIDDLE
         this._content = this._content.replace(
@@ -194,18 +199,18 @@ exports.MdToHtml = function () {
             `<script src="https://gist.github.com/$3/$4.js"></script>`);
 
         // HLJS
-        this._content = this._content.replace(
-            /(?<=class=")language-(\w+)/gi,
-            `$1`);
+        //this._content = this._content.replace(
+        //    /(?<=class=")language-(\w+)/gi,
+        //    `$1`);
         // Embed Separator Tab
-        if (/(<h1|2|3|4)(>.*?)(<\/h(1|2|3|4)\>)/i.test(this._content)) {
+        if (/(<h1)(>.*?)(<\/h1\>)/i.test(this._content)) {
             this._content = this._content.replace(
-                /(<h1|2|3|4)(>.*?)(<\/h(1|2|3|4)\>)/i,
+                /(<h1)(>.*?)(<\/h1\>)/i,
                 `$1 class="title" $2$3 <div class="separator"></div>`
             );
         }
         // Convert all anchor tags to target new tab
-        this._content = this._content.replace(/<a\s+/gi, "<a target='_blank'")
+        this._content = this._content.replace(/<a\s+/gi, "<a target='_blank' ")
         // Alert Style
         if (/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO|ALERT|NOTICE|ERROR|WARNING)\s*:/ig.test(this._content)) {
             if (/(<blockquote)(>\s*<p>)\s*(IMPORTANT|INFO)\s*:/ig.test(this._content)) {

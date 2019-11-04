@@ -1,7 +1,6 @@
 ---
 title: Build a scroll progress bar with vanilla js in 2 minutes or less
-description: 
-date: 09/19/2019
+description: asdasdas
 image: https://cdn-images-1.medium.com/max/800/1*Srp321ROEFy_K1c6Xy7RUw.png
 style: blogs
 ---

@@ -1,7 +1,6 @@
 ---
 title: Introduction to Material Design in WinForms Apps
 description: Material Design’s immense popularity and utility has compelled ComponentOne Studio to include feature sets to support Material specs. We already support Material design in our ASP.NET MVC and JavaScript controls.
-date: 09/19/2019
 image: sdfds
 style: blogs
 ---
