@@ -84,6 +84,7 @@ $('document').ready(function () {
                 $(".header > div > span > svg").css("fill", calcColor);
                 $("input:focus").css("box-shadow", `0 0 4px ${calcColor}`);
                 $("input:focus").css("border", `1px solid ${calcColor}`);
+                $(".header > span > .selected").css("color", `0 0 4px ${calcColor}`);
             }
             else {
                 $(".options > span").css("color", selectedColor);
@@ -91,6 +92,7 @@ $('document').ready(function () {
                 $(".header > div > span > svg").css("fill", selectedColor);
                 $("input:focus").css("box-shadow", `0 0 4px ${selectedColor}`);
                 $("input:focus").css("border", `1px solid ${selectedColor}`);
+                $(".header > span > .selected").css("color", `0 0 4px ${selectedColor}`);
             }
         } else {
         }

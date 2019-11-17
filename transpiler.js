@@ -131,6 +131,16 @@ exports.Style = function (styleName) {
             </style>
             {{__STYLE__}}`);
         }
+        if (this._meta.list == "true" || this._meta.list == true) {
+            // const _data = fileOps.ReadFile(fileOps.MergePath(__dirname, 'style', 'list.scss'));
+            // const _styleContent = sass.renderSync({
+            //     data: data,
+            //     includePaths: [
+            //         "style"
+            //     ]
+            // }).css.toString();
+            // this._layout = this._layout.replace("{{__STYLE__}}", `<style>\n${_styleContent}\n</style>\n{{__STYLE__}}`);
+        }
         const data = fileOps.ReadFile(styleName);
         const styleContent = sass.renderSync({
             data: data,
@@ -180,6 +190,7 @@ exports.MdToHtml = function () {
         // Convert to HTML
         this._content = this._init.render(this._content);
 
+
         // TOC builder
         let partial = this._content;
         const rgxTitle = RegExp('(<\\s*h(1|2|3|4|5))\\s*(.*?)>(.*?)(<\\/h(1|2|3|4|5)\\s*>)', 'g');
@@ -189,7 +200,7 @@ exports.MdToHtml = function () {
         while ((_titleRgxGroups = rgxTitle.exec(this._content)) !== null) {
             const aname = _titleRgxGroups[4].replace(/\W/g, "_").replace(/_+/g, "_");
             let con = `${_titleRgxGroups[1]} ${_titleRgxGroups[3]}><a name="${aname}">${_titleRgxGroups[4]}</a>${_titleRgxGroups[5]}`;
-            if(rgxMainTitle.test(_titleRgxGroups[0])) {
+            if (rgxMainTitle.test(_titleRgxGroups[0])) {
                 con = `${_titleRgxGroups[1]} class="title" ${_titleRgxGroups[3]}><a name="${aname}">${_titleRgxGroups[4]}</a>${_titleRgxGroups[5]}`;
             }
             partial = partial.replace(_titleRgxGroups[0], con)
