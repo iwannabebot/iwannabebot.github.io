@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "build.js",
   "scripts": {
+    "postinstall": "npm i -g rimraf nodemon gh-pages && npm rebuild node-sass",
     "dev": "concurrently \"nodemon\" \"live-server dist\"",
     "build": "rimraf dist && node build.js --output='dist' --view='robo.txt;CNAME;index.html;assets;blogs;tools' --style='style' --script='script'",
     "deploy": "gh-pages -d dist"

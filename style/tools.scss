@@ -9,26 +9,26 @@ body {
     height: 36px;
     padding: 6px 16px;
     color: #efefef;
-    background-color: $green1;
+    background-color: $header-background-color;
     opacity: 0.8;
-    box-shadow: 0px 2px 2px 0px $green1;
+    box-shadow: 0px 2px 2px 0px $header-background-color;
     a {
       margin-right: 30px;
-      color: $white2;
+      color: $white;
     }
     .right {
       float: right;
     }
     .options{
       margin-top: 40px;
-      color: $green1;
+      color: $header-background-color;
     }
     span {
       cursor: pointer;
       padding: 0px 10px;
     }
     .icon {
-      fill: $green1;
+      fill: $header-background-color;
     }
     svg {
       width: 18px;
@@ -50,7 +50,7 @@ body {
     border-bottom: 1px solid $green3;
     a {
       margin-right: 30px;
-      color: $green1;
+      color: $header-background-color;
       font-size: 18px;
     }
     .right {
@@ -62,32 +62,32 @@ body {
     min-height: calc(100vh - 122px);
     width: 100%;
     margin: 40px auto 10px;
-    color: $black1;
+    color: $black;
 
     span.input-group-text {
-      color: $white2;
-      background-color: $green1;
+      color: $white;
+      background-color: $header-background-color;
     }
 
     input:focus {
       outline: none !important;
-      border:1px solid $green1;
-      box-shadow: 0 0 4px $green1;
+      border:1px solid $header-background-color;
+      box-shadow: 0 0 4px $header-background-color;
     }
 
     hr{
       width: 15%;
       border: 0;
-      border-top: 4px solid $black2;
+      border-top: 4px solid $black;
       margin: 5em auto 5em;
     }
     a {
-      color: $green3;
+      color: $text-link;
       text-decoration: dashed;
     }
     a, a:link {
       transition: all 0.2s;
-      color: $green3;
+      color: $text-link;
     }
     .iwb-embed {
       box-shadow: 0px 2px 15px 2px #eee;
@@ -96,20 +96,19 @@ body {
       text-align: justify;
       text-justify: inter-word;
       a {
-        color: $green3;
+        color: $text-link;
         text-decoration: dashed;
-        color: $yellow1;
       }
       a,
       a:link {
         transition: all 0.2s;
-        color: $yellow2;
+        color: $text-link;
       }
       em {
         padding: 5px 7px 0;
         white-space: pre-wrap;
-        background-color: rgba($yellow1, 0.2);
-        border-bottom: 2px solid $yellow3;
+        background-color: rgba($text-link, 0.2);
+        border-bottom: 2px solid $text-link;
         font-style: normal;
         border-radius: 4px;
         a {
@@ -129,8 +128,9 @@ body {
   }
   .footer {
     margin: 20px 30px 20px 30px;
-    color: $black3;
+    color: $black;
   }
+  background-color: $white !important;
 }
 
 .color-picker-codehost {

@@ -180,6 +180,22 @@ exports.MdToHtml = function () {
         // Convert to HTML
         this._content = this._init.render(this._content);
 
+        // TOC builder
+        let partial = this._content;
+        const rgxTitle = RegExp('(<\\s*h(1|2|3|4|5))\\s*(.*?)>(.*?)(<\\/h(1|2|3|4|5)\\s*>)', 'g');
+        const rgxMainTitle = RegExp('(<\\s*h1)\\s*(.*?)>(.*?)(<\\/h1\\s*>)', 'g');
+        var _titleRgxGroups;
+
+        while ((_titleRgxGroups = rgxTitle.exec(this._content)) !== null) {
+            const aname = _titleRgxGroups[4].replace(/\W/g, "_").replace(/_+/g, "_");
+            let con = `${_titleRgxGroups[1]} ${_titleRgxGroups[3]}><a name="${aname}">${_titleRgxGroups[4]}</a>${_titleRgxGroups[5]}`;
+            if(rgxMainTitle.test(_titleRgxGroups[0])) {
+                con = `${_titleRgxGroups[1]} class="title" ${_titleRgxGroups[3]}><a name="${aname}">${_titleRgxGroups[4]}</a>${_titleRgxGroups[5]}`;
+            }
+            partial = partial.replace(_titleRgxGroups[0], con)
+        }
+        this._content = partial;
+
         // CODEPEN
         this._content = this._content.replace(
             /(\<a\s+href\s*=\s*[\"\'])?(https?:\/\/)?codepen\.io\/(\w+?)\/\w+\/([\w-_]+)?((\?)?(((([\w-_]+)=([\w,]+)?)(\&(amp;)?))*(([\w-_]+)=([\w,]+)?)))?([\"\']>)?((.*?)<\/a>)?/gi,

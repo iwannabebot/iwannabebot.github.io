@@ -4,12 +4,12 @@
 .tippy-content {
     padding: 5px 7px;
     font-family: $font-primary;
-    background-color: $white4;
-    color: $green3;
+    background-color: $white-dark;
+    color: $primary;
 }
 .tippy-tooltip {
-    background-color: $white4;
-    color: $green3;
+    background-color: $white-dark;
+    color: $primary;
 }
 .tippy-roundarrow {
     fill: transparent
@@ -35,7 +35,7 @@ pre {
         font-size: 13px;
         font-weight: 700;
         line-height: 20px;
-        color: rgba(51,51,51,0.2);
+        color: $black;
         white-space: nowrap;
         vertical-align: middle;
         cursor: pointer;

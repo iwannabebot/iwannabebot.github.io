@@ -184,7 +184,6 @@ text.setTextColor(_COLOR);`;
 
     // Example using an event, to change the color of the .jumbotron background:
     $('#colorInput').on('colorpickerChange', function (event) {
-        alert("hi");//event.color.toString());
     });
     var oldColor = null;
     $("#colorInput").on("change input", function (e) {

@@ -1,32 +1,39 @@
+$white: rgba(247, 247, 247, 1);
+$white-dark: rgba(170,170,170,0.1);
+
+$black: rgba(52, 50, 56, 1);
+$black-light: rgba(52,50,56,0.2);
+
+$grapecity: #470A68 !important;
+$amazon-orange: rgba(255,153,0, 1);
+$amazon-black: rgba(0,0,0, 1);
+
+$primary: #343238;
+$error: rgba(242, 95, 92, 1);
+$warning: rgba(255, 224, 102, 1);
+$secondary: rgba(36, 123, 160, 1);
+$highlight: #5D737E;
+
+$info-background : rgba(112, 193, 179, 0.8);
+$info-color : rgba(11, 53, 42, 0.8);
+$info-border : $secondary;
+
+$err-background : rgba(236, 159, 159, 0.133);
+$err-color : $error;
+$err-border : rgba(99, 12, 12, 0.8);
+
+$warn-background : $warning;
+$warn-color : rgba(247, 119, 0, 1);
+$warn-border : rgba(255, 115, 0, 0.8);
+
+$header-background-color: $grapecity;
+$footer-background-color: $amazon-black;
+$title-decoration-color: $amazon-orange;
+$blockquote-background-color : rgba($primary, 0.1);
+$text-link: $highlight;
+
 $green1: rgba(0,143,104,0.8);
 $green2: #6DB65B;
 $green3: #4AAE9B;
 $green4: rgba(0,143,104,0.1);
 $green5: rgb(6, 31, 24);
-
-$yellow1: #FAE042;
-$yellow2: #EFBB35;
-$yellow3: #DFA612;
-
-$white: white;
-$white1: #eeeeee;
-$white2: #eaeaea;
-$white3: #aaaaaa;
-$white4: rgba(170,170,170,0.1);
-
-$black: black;
-$black1: #282927;
-$black2: #464646;
-$black3: #232323;
-
-$info-background : rgba(136, 243, 193, 0.8);
-$info-color : rgba(11, 53, 42, 0.8);
-$info-border : rgba(18, 88, 56, 0.959);
-
-$err-background : rgba(236, 159, 159, 0.733);
-$err-color : rgba(99, 12, 12, 0.8);
-$err-border : rgba(255, 51, 51, 0.897);
-
-$warn-background : rgba(221, 174, 73, 0.733);
-$warn-color : rgba(247, 99, 0, 0.856);
-$warn-border : rgba(255, 115, 0, 0.8);
